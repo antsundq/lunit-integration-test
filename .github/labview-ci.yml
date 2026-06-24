@@ -15,3 +15,9 @@ activities:
   - unit-tests
   - custom-image
   - dashboard
+unitTests:
+  tools:
+    lunit:
+      enabled: true
+      locations:
+        - tests
