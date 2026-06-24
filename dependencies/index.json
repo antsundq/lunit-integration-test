@@ -1,8 +1,15 @@
 {
   "schema": 1,
   "repo": "antsundq/lunit-integration-test",
-  "sha": "ecf184aa6689fc6f2da7e1782dac52d5a45f8876",
+  "sha": "d98ed64a04205d6e6ce04b886bac8e9bf2f3dc23",
   "revisions": [
+    {
+      "sha": "d98ed64a04205d6e6ce04b886bac8e9bf2f3dc23",
+      "short": "d98ed64",
+      "message": "Enable LUnit + add nordlug worker workflow (integration run)",
+      "author": "Anton Sundqvist",
+      "date": "2026-06-24T18:40:01Z"
+    },
     {
       "sha": "ecf184aa6689fc6f2da7e1782dac52d5a45f8876",
       "short": "ecf184a",
