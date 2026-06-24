@@ -1,8 +1,15 @@
 {
   "schema": 1,
   "repo": "antsundq/lunit-integration-test",
-  "sha": "d98ed64a04205d6e6ce04b886bac8e9bf2f3dc23",
+  "sha": "67cc9f8b2dc62cd17f8e88f78984fd7fe0ee6ec0",
   "revisions": [
+    {
+      "sha": "67cc9f8b2dc62cd17f8e88f78984fd7fe0ee6ec0",
+      "short": "67cc9f8",
+      "message": "Switch to hosted unit-tests workflow; remove self-hosted nordlug workflow",
+      "author": "Anton Sundqvist",
+      "date": "2026-06-24T19:14:34Z"
+    },
     {
       "sha": "d98ed64a04205d6e6ce04b886bac8e9bf2f3dc23",
       "short": "d98ed64",
