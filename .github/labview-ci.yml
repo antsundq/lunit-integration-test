@@ -6,7 +6,7 @@ installedAt: 2026-06-24T14:41:07Z
 provider: github
 source:
   repo: antsundq/LabVIEW-CI-with-Containers
-  ref: v3.47.0
+  ref: add-lunit-support
 config:
   labviewVersion: "2026"
   branch: main
