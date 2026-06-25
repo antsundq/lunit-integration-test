@@ -1,0 +1,100 @@
+{
+ "meta": {
+  "sha": "67cc9f8b2dc62cd17f8e88f78984fd7fe0ee6ec0",
+  "short": "67cc9f8",
+  "platform": "windows",
+  "repo": "antsundq/lunit-integration-test",
+  "pages_url": "https://antsundq.github.io/lunit-integration-test",
+  "snap_base": "https://antsundq.github.io/lunit-integration-test/vi-snapshots/",
+  "dash_url": "https://antsundq.github.io/lunit-integration-test/",
+  "labview_version": "2026",
+  "tools": [
+   {
+    "id": "lunit",
+    "label": "LUnit"
+   }
+  ],
+  "commit": {
+   "message": "Switch to hosted unit-tests workflow; remove self-hosted nordlug workflow",
+   "author": "Anton Sundqvist",
+   "date": "2026-06-24T22:14:34+03:00"
+  },
+  "generated_utc": "2026-06-25 01:35 UTC"
+ },
+ "summary": {
+  "tests": 1,
+  "passed": 1,
+  "failed": 0,
+  "errored": 0,
+  "skipped": 0,
+  "percent": 100,
+  "status": "passed",
+  "duration": 0.1
+ },
+ "status_order": [
+  "failed",
+  "error",
+  "skipped",
+  "passed"
+ ],
+ "status_meta": {
+  "failed": {
+   "label": "Failed",
+   "color": "#da3633",
+   "blurb": "An assertion failed."
+  },
+  "error": {
+   "label": "Errored",
+   "color": "#bb8009",
+   "blurb": "The test raised an unexpected error."
+  },
+  "skipped": {
+   "label": "Skipped",
+   "color": "#6e7681",
+   "blurb": "The test was skipped."
+  },
+  "passed": {
+   "label": "Passed",
+   "color": "#2ea043",
+   "blurb": "The test passed."
+  }
+ },
+ "platforms": [
+  {
+   "id": "windows",
+   "url": null
+  },
+  {
+   "id": "linux",
+   "url": "linux/results.json"
+  }
+ ],
+ "suites": [
+  {
+   "tool": "lunit",
+   "name": "My Test.lvclass",
+   "tests": 1,
+   "failures": 0,
+   "errors": 0,
+   "skipped": 0,
+   "time": 0.118,
+   "cases": [
+    {
+     "name": "Test That Everything Is Working.vi",
+     "classname": "My Test",
+     "status": "passed",
+     "time": 0.118,
+     "message": "",
+     "details": "",
+     "test_vi_rel": "tests/My Test/Test That Everything Is Working.vi",
+     "test_vi_name": "Test That Everything Is Working",
+     "target_vi_rel": "",
+     "target_vi_name": ""
+    }
+   ]
+  }
+ ],
+ "tooling": {
+  "missing": []
+ }
+}
