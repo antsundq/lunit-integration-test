@@ -6,9 +6,9 @@
   "base_image": "ghcr.io/antsundq/lunit-integration-test-labview-vipm-base:2026",
   "base_digest": "ghcr.io/antsundq/lunit-integration-test-labview-vipm-base@sha256:699010d35cca40cfd79a5ebda4a26ac5be1ae6ac66623a9cf49dc00a75960d6d",
   "image_ref": "ghcr.io/antsundq/lunit-integration-test-labview:win-50ea729fa2f2",
-  "build_date": "2026-06-24T20:20:25Z",
+  "build_date": "2026-07-01T08:49:53Z",
   "git_sha": "67cc9f8b2dc62cd17f8e88f78984fd7fe0ee6ec0",
-  "run_url": "https://github.com/antsundq/lunit-integration-test/actions/runs/28123407989",
+  "run_url": "https://github.com/antsundq/lunit-integration-test/actions/runs/28502802694",
   "vipc": [
     {
       "file": "ci-tooling.vipc",
