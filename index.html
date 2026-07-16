@@ -1088,8 +1088,8 @@
     // activities to queue. Reuses dispatchCells (oldest-first, snapshots as one
     // backfill) + the same token and optimistic-queued bridge as every other
     // dispatch on the dashboard.
-    var HIST = [];                        // [{sha, short, msg}] newest-first (project revisions)
-    var RAN = {};                     // {cap:1} caps with a result/active run somewhere in history
+    var HIST = [{"sha": "ecf184aa6689fc6f2da7e1782dac52d5a45f8876", "short": "ecf184a", "msg": "add test", "snapshots2": {"windows": {"have": 0, "total": 2}, "linux": {"have": 0, "total": 2}}}];                        // [{sha, short, msg}] newest-first (project revisions)
+    var RAN = {"unit-tests": 1};                     // {cap:1} caps with a result/active run somewhere in history
     var CAP_META = {                            // label + sub for each known capability
       'snapshots':   ['VI Snapshots', 'Renders every changed VI (classic HTML snapshots)'],
       'snapshots2':  ['VI Browser 2.0 Snapshots', 'Renders position-aware snapshots for the VI Browser 2.0 view'],
@@ -1495,7 +1495,7 @@
   </script>
   <main class="lvci-main">
   <h1>CI Dashboard — lunit-integration-test</h1>
-  <div class="sub">Last updated: 2026-07-16 22:53 UTC &nbsp;|&nbsp; Auto-refreshes every 15 min</div>
+  <div class="sub">Last updated: 2026-07-16 23:55 UTC &nbsp;|&nbsp; Auto-refreshes every 15 min</div>
   <div class="nav">
     <a href="https://github.com/antsundq/lunit-integration-test">GitHub</a>
     <a href="https://github.com/antsundq/lunit-integration-test/actions">Actions</a>
@@ -1538,7 +1538,96 @@
         <th style="text-align:center">Antidoc</th>
       </tr>
     </thead>
-    <tbody></tbody>
+    <tbody>
+    <tr data-project="false" data-deponly="false">
+      <td class="cidash-rev">
+        <div class="cidash-rev-wrap">
+          <span class="cidash-avatar" style="background:hsl(81,42%,45%)" title="Anton Sundqvist" aria-hidden="true">A</span>
+          <div class="cidash-rev-body">
+            <div class="cidash-rev-line1"><a href="https://antsundq.github.io/lunit-integration-test/vi-snapshots/index.html?sha=67cc9f8b2dc62cd17f8e88f78984fd7fe0ee6ec0" class="cidash-rev-msg" title="Switch to hosted unit-tests workflow; remove self-hosted nordlug workflow">Switch to hosted unit-tests workflow; remove self-hosted nordlug workflow</a></div>
+            <div class="cidash-rev-meta"><a href="https://antsundq.github.io/lunit-integration-test/vi-snapshots/index.html?sha=67cc9f8b2dc62cd17f8e88f78984fd7fe0ee6ec0" class="cidash-rev-sha" title="Browse this revision's VIs in the VI Browser">67cc9f8</a><span class="cidash-rev-dot">&middot;</span>Anton Sundqvist<span class="cidash-rev-dot">&middot;</span>2026-06-24</div>
+          </div>
+        </div>
+      </td>
+      <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
+      <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
+      <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
+      <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
+      <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
+      <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
+    </tr>
+
+    <tr data-project="false" data-deponly="false">
+      <td class="cidash-rev">
+        <div class="cidash-rev-wrap">
+          <span class="cidash-avatar" style="background:hsl(81,42%,45%)" title="Anton Sundqvist" aria-hidden="true">A</span>
+          <div class="cidash-rev-body">
+            <div class="cidash-rev-line1"><a href="https://antsundq.github.io/lunit-integration-test/vi-snapshots/index.html?sha=d98ed64a04205d6e6ce04b886bac8e9bf2f3dc23" class="cidash-rev-msg" title="Enable LUnit + add nordlug worker workflow (integration run)">Enable LUnit + add nordlug worker workflow (integration run)</a></div>
+            <div class="cidash-rev-meta"><a href="https://antsundq.github.io/lunit-integration-test/vi-snapshots/index.html?sha=d98ed64a04205d6e6ce04b886bac8e9bf2f3dc23" class="cidash-rev-sha" title="Browse this revision's VIs in the VI Browser">d98ed64</a><span class="cidash-rev-dot">&middot;</span>Anton Sundqvist<span class="cidash-rev-dot">&middot;</span>2026-06-24</div>
+          </div>
+        </div>
+      </td>
+      <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
+      <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
+      <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
+      <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
+      <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
+      <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
+    </tr>
+
+    <tr data-project="true" data-deponly="false">
+      <td class="cidash-rev">
+        <div class="cidash-rev-wrap">
+          <span class="cidash-avatar" style="background:hsl(81,42%,45%)" title="Anton Sundqvist" aria-hidden="true">A</span>
+          <div class="cidash-rev-body">
+            <div class="cidash-rev-line1"><a href="https://antsundq.github.io/lunit-integration-test/vi-snapshots/index.html?sha=ecf184aa6689fc6f2da7e1782dac52d5a45f8876" class="cidash-rev-msg" title="add test">add test</a></div>
+            <div class="cidash-rev-meta"><a href="https://antsundq.github.io/lunit-integration-test/vi-snapshots/index.html?sha=ecf184aa6689fc6f2da7e1782dac52d5a45f8876" class="cidash-rev-sha" title="Browse this revision's VIs in the VI Browser">ecf184a</a><span class="cidash-rev-dot">&middot;</span>Anton Sundqvist<span class="cidash-rev-dot">&middot;</span>2026-06-24</div>
+          </div>
+        </div>
+      </td>
+      <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
+      <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
+      <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
+      <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
+      <td style="text-align:center" class="cidash-cap-cell" data-cap="unit-tests" data-sha="ecf184aa6689fc6f2da7e1782dac52d5a45f8876" data-parent="7affc69fd3cc634ac7d2a9c81600e8294858f6b5" data-short="ecf184a" data-ts="2026-06-24T16:23:32Z"><span class="cidash-chip cc-fail"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M3.72 3.72a.75.75 0 0 1 1.06 0L8 6.94l3.22-3.22a.75.75 0 1 1 1.06 1.06L9.06 8l3.22 3.22a.75.75 0 1 1-1.06 1.06L8 9.06l-3.22 3.22a.75.75 0 0 1-1.06-1.06L6.94 8 3.72 4.78a.75.75 0 0 1 0-1.06Z"/></svg><a href="https://github.com/antsundq/lunit-integration-test/actions/runs/28113281727" style="color:inherit">tests</a></span></td>
+      <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
+    </tr>
+
+    <tr data-project="false" data-deponly="false">
+      <td class="cidash-rev">
+        <div class="cidash-rev-wrap">
+          <span class="cidash-avatar" style="background:hsl(81,42%,45%)" title="Anton Sundqvist" aria-hidden="true">A</span>
+          <div class="cidash-rev-body">
+            <div class="cidash-rev-line1"><a href="https://antsundq.github.io/lunit-integration-test/vi-snapshots/index.html?sha=7affc69fd3cc634ac7d2a9c81600e8294858f6b5" class="cidash-rev-msg" title="Point tooling source ref at add-lunit-support (fork has no v3.47.0 tag)">Point tooling source ref at add-lunit-support (fork has no v3.47.0 tag)</a></div>
+            <div class="cidash-rev-meta"><a href="https://antsundq.github.io/lunit-integration-test/vi-snapshots/index.html?sha=7affc69fd3cc634ac7d2a9c81600e8294858f6b5" class="cidash-rev-sha" title="Browse this revision's VIs in the VI Browser">7affc69</a><span class="cidash-rev-dot">&middot;</span>Anton Sundqvist<span class="cidash-rev-dot">&middot;</span>2026-06-24</div>
+          </div>
+        </div>
+      </td>
+      <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
+      <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
+      <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
+      <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
+      <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
+      <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
+    </tr>
+
+    <tr data-project="false" data-deponly="false">
+      <td class="cidash-rev">
+        <div class="cidash-rev-wrap">
+          <span class="cidash-avatar" style="background:hsl(81,42%,45%)" title="Anton Sundqvist" aria-hidden="true">A</span>
+          <div class="cidash-rev-body">
+            <div class="cidash-rev-line1"><a href="https://antsundq.github.io/lunit-integration-test/vi-snapshots/index.html?sha=f5eacb9afcae6a42f2b86828c8c37f16b4fed0cf" class="cidash-rev-msg" title="Install LabVIEW CI (unit-tests + custom-image + dashboard) from antsundq fork">Install LabVIEW CI (unit-tests + custom-image + dashboard) from antsundq fork</a></div>
+            <div class="cidash-rev-meta"><a href="https://antsundq.github.io/lunit-integration-test/vi-snapshots/index.html?sha=f5eacb9afcae6a42f2b86828c8c37f16b4fed0cf" class="cidash-rev-sha" title="Browse this revision's VIs in the VI Browser">f5eacb9</a><span class="cidash-rev-dot">&middot;</span>Anton Sundqvist<span class="cidash-rev-dot">&middot;</span>2026-06-24</div>
+          </div>
+        </div>
+      </td>
+      <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
+      <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
+      <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
+      <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
+      <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
+      <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
+    </tr></tbody>
   </table>
   </div>
   <div id="empty-state" style="display:none;padding:18px;text-align:center;color:var(--fg-muted);font-size:.9em">
