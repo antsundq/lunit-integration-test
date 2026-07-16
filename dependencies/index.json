@@ -2,43 +2,7 @@
   "schema": 1,
   "repo": "antsundq/lunit-integration-test",
   "sha": "67cc9f8b2dc62cd17f8e88f78984fd7fe0ee6ec0",
-  "revisions": [
-    {
-      "sha": "67cc9f8b2dc62cd17f8e88f78984fd7fe0ee6ec0",
-      "short": "67cc9f8",
-      "message": "Switch to hosted unit-tests workflow; remove self-hosted nordlug workflow",
-      "author": "Anton Sundqvist",
-      "date": "2026-06-24T19:14:34Z"
-    },
-    {
-      "sha": "d98ed64a04205d6e6ce04b886bac8e9bf2f3dc23",
-      "short": "d98ed64",
-      "message": "Enable LUnit + add nordlug worker workflow (integration run)",
-      "author": "Anton Sundqvist",
-      "date": "2026-06-24T18:40:01Z"
-    },
-    {
-      "sha": "ecf184aa6689fc6f2da7e1782dac52d5a45f8876",
-      "short": "ecf184a",
-      "message": "add test",
-      "author": "Anton Sundqvist",
-      "date": "2026-06-24T16:23:09Z"
-    },
-    {
-      "sha": "7affc69fd3cc634ac7d2a9c81600e8294858f6b5",
-      "short": "7affc69",
-      "message": "Point tooling source ref at add-lunit-support (fork has no v3.47.0 tag)",
-      "author": "Anton Sundqvist",
-      "date": "2026-06-24T16:15:33Z"
-    },
-    {
-      "sha": "f5eacb9afcae6a42f2b86828c8c37f16b4fed0cf",
-      "short": "f5eacb9",
-      "message": "Install LabVIEW CI (unit-tests + custom-image + dashboard) from antsundq fork",
-      "author": "Anton Sundqvist",
-      "date": "2026-06-24T14:41:39Z"
-    }
-  ],
+  "revisions": [],
   "config": {
     "use": "",
     "actions": {},
