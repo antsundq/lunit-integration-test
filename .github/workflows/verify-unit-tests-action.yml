@@ -5,6 +5,10 @@ on:
     branches: [ verify/unit-tests-action ]
   workflow_dispatch: {}
 
+permissions:
+  contents: read
+  checks: write
+
 jobs:
   unit-tests:
     runs-on: windows-2022   # windows-latest = Server 2025, broken Docker daemon
@@ -18,6 +22,16 @@ jobs:
           framework: lunit
           test-dir: tests
           labview-version: '2026'
+
+      - name: LUnit Test Report
+        uses: astemes/test-reporter@v2
+        if: always()
+        with:
+          name: LUnit Tests
+          path: ci-out/unit-tests/results/*.xml
+          reporter: java-junit
+          fail-on-error: 'true'
+          list-suites: 'failed'
 
       - name: Print result summary
         shell: bash
