@@ -1,0 +1,30 @@
+name: Verify Worker Image Action
+
+on:
+  push:
+    branches: [ verify/worker-image-action ]
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  worker-image:
+    runs-on: windows-2022
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build/update worker image
+        id: wi
+        uses: antsundq/LabVIEW-CI-with-Containers/actions/worker-image@main
+        with:
+          labview-version: '2026'
+
+      - name: Print result summary
+        shell: bash
+        run: |
+          echo "image=${{ steps.wi.outputs.image }}"
+          echo "tag=${{ steps.wi.outputs.tag }}"
+          echo "digest=${{ steps.wi.outputs.digest }}"
+          echo "built=${{ steps.wi.outputs.built }}"
