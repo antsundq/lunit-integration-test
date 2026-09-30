@@ -1,7 +1,7 @@
 {
-  "version": "linux-4ce478ba9bb6",
+  "version": "linux-f12ad549f0d3",
   "platform": "linux",
-  "manifest_url": "https://antsundq.github.io/lunit-integration-test/workers/linux/linux-4ce478ba9bb6/manifest.html",
-  "build_date": "2026-09-30T07:44:47Z",
+  "manifest_url": "https://antsundq.github.io/lunit-integration-test/workers/linux/linux-f12ad549f0d3/manifest.html",
+  "build_date": "2026-09-30T08:30:06Z",
   "git_sha": "d313219793f1e70dabe2daab7d0946c0445c236d"
 }
