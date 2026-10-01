@@ -49,16 +49,19 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
-      - name: Read opted-in tooling ref from config
+      - name: Read opted-in tooling source from config
         id: cfg
         shell: bash
         run: |
-          REF=$(awk '/^[[:space:]]*ref:[[:space:]]/{print $2; exit}' .github/labview-ci.yml 2>/dev/null)
+          CFG=.github/labview-ci.yml
+          REPO=$(awk '/^source:[[:space:]]*$/{s=1;next} s&&/^[^[:space:]]/{exit} s&&/^  repo:[[:space:]]/{print $2;exit}' "$CFG" 2>/dev/null)
+          REF=$(awk '/^[[:space:]]*ref:[[:space:]]/{print $2; exit}' "$CFG" 2>/dev/null)
+          echo "repo=${REPO:-elijah286/LabVIEW-CI-with-Containers}" >> "$GITHUB_OUTPUT"
           echo "ref=${REF:-v4.18.4}" >> "$GITHUB_OUTPUT"
       - name: Check out tooling (opted-in version)
         uses: actions/checkout@v5
         with:
-          repository: elijah286/LabVIEW-CI-with-Containers
+          repository: ${{ steps.cfg.outputs.repo }}
           ref: ${{ steps.cfg.outputs.ref }}
           path: _lvci
       - name: Build CI dashboard
