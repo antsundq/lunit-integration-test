@@ -19,7 +19,6 @@ config:
 activities:
   - unit-tests
   - custom-image
-  - dashboard
 
 unitTests:
   tools:
