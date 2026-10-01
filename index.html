@@ -102,11 +102,41 @@
     .cidash-chip.cc-fail{background:rgba(248,81,73,.16);color:#f85149;border-color:rgba(248,81,73,.4)}
     .cidash-chip.cc-warn{background:rgba(210,153,34,.16);color:#d29922;border-color:rgba(210,153,34,.35)}
     .cidash-chip.cc-info{background:rgba(56,139,253,.16);color:#58a6ff;border-color:rgba(56,139,253,.3)}
+    /* Solid pill: a hard failure (e.g. a Mass Compile run LabVIEW could not
+       complete) fills the pill with a bright, saturated red so it stands out
+       from a merely low percentage (which stays a subtly-tinted red). */
+    .cidash-chip.cc-fail.cc-solid{background:#da3633;color:#fff;border-color:#da3633}
+    .cidash-chip.cc-fail.cc-solid svg{color:#fff}
+    /* Split pill: a neutral container whose individual values colour themselves
+       (used when one cell reports two values that can differ in state, e.g. the
+       Windows / Linux mass-compile percentages). Each value has an instant
+       (no-delay) mouse-over naming its platform via data-tip. */
+    .cidash-chip.cc-split{background:rgba(110,118,129,.14);color:var(--fg-muted);border-color:rgba(110,118,129,.32)}
+    .cidash-chip .cidash-vseg{position:relative;font-weight:700}
+    .cidash-chip .cidash-vseg.cc-pass{color:#3fb950}
+    .cidash-chip .cidash-vseg.cc-fail{color:#f85149}
+    .cidash-chip .cidash-vseg.cc-warn{color:#d29922}
+    .cidash-chip .cidash-vseg.cc-muted{color:#8b949e}
+    /* A hard-failed segment in a split pill is filled bright red (a small solid
+       badge) so it reads as a failure, not just a low number. */
+    .cidash-chip .cidash-vseg.cc-fail.cc-solid{background:#da3633;color:#fff;padding:1px 7px;border-radius:6px}
+    .cidash-chip .cidash-vseg-sep{opacity:.5;margin:0 4px;font-weight:400}
+    .cidash-chip .cidash-vseg[data-tip]:hover::after{content:attr(data-tip);position:absolute;left:50%;bottom:calc(100% + 7px);transform:translateX(-50%);background:#1c2128;color:#e6edf3;border:1px solid #30363d;padding:2px 7px;border-radius:6px;font-size:.95em;font-weight:600;white-space:nowrap;pointer-events:none;z-index:30;box-shadow:0 2px 8px rgba(0,0,0,.4)}
+    .cidash-chip .cidash-vseg[data-tip]:hover::before{content:"";position:absolute;left:50%;bottom:calc(100% + 2px);transform:translateX(-50%);border:5px solid transparent;border-top-color:#30363d;pointer-events:none;z-index:30}
     @media(prefers-color-scheme:light){
       .cidash-chip.cc-pass{background:#dafbe1;color:#1a7f37;border-color:#2da44e55}
       .cidash-chip.cc-fail{background:#ffebe9;color:#cf222e;border-color:#cf222e44}
       .cidash-chip.cc-warn{background:#fff8c5;color:#9a6700;border-color:#9a670055}
       .cidash-chip.cc-info{background:#ddf4ff;color:#0969da;border-color:#0969da44}
+      .cidash-chip.cc-split{background:#eaeef2;color:#57606a;border-color:#d0d7de}
+      .cidash-chip.cc-fail.cc-solid{background:#cf222e;color:#fff;border-color:#cf222e}
+      .cidash-chip .cidash-vseg.cc-pass{color:#1a7f37}
+      .cidash-chip .cidash-vseg.cc-fail{color:#cf222e}
+      .cidash-chip .cidash-vseg.cc-warn{color:#9a6700}
+      .cidash-chip .cidash-vseg.cc-muted{color:#57606a}
+      .cidash-chip .cidash-vseg.cc-fail.cc-solid{background:#cf222e;color:#fff}
+      .cidash-chip .cidash-vseg[data-tip]:hover::after{background:#fff;color:#1f2328;border-color:#d0d7de;box-shadow:0 2px 8px rgba(140,149,159,.35)}
+      .cidash-chip .cidash-vseg[data-tip]:hover::before{border-top-color:#d0d7de}
     }
     /* VIDiff "diff stat": different / new / deleted VI counts for a revision.
        Colour-coded modified-amber / added-green / deleted-red with grey slashes;
@@ -162,7 +192,7 @@
       .cidash-rev-msg{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
       .cidash-rev-meta{flex-wrap:wrap;white-space:normal}
     }
-    .cidash-run{display:inline-block;color:var(--fg-muted);font-size:.95em;line-height:1;text-decoration:none;opacity:.5;transition:opacity .12s,color .12s}.cidash-run:hover{opacity:1;color:var(--link);text-decoration:none}tr:hover .cidash-run{opacity:.85}.snap-glyph{display:inline-flex;align-items:center;color:var(--fg-muted);opacity:.6;text-decoration:none;flex:0 0 auto;transition:opacity .12s,color .12s}.snap-glyph:hover{opacity:1;color:var(--link)}tr:hover .snap-glyph{opacity:.85}.cidash-btn{border:1px solid var(--border);border-radius:6px;padding:8px 14px;font-size:.85em;font-weight:600;cursor:pointer;font-family:inherit}.cidash-go{background:#238636;color:#fff;border-color:transparent}.cidash-go:hover{background:#2ea043}.cidash-go:disabled{opacity:.6;cursor:default}.cidash-ghost{background:var(--bg);color:var(--fg)}.cidash-ghost:hover{border-color:var(--link)}.cidash-danger{background:#da3633;color:#fff;border-color:transparent}.cidash-danger:hover{background:#f85149}.cidash-danger:disabled{opacity:.6;cursor:default}.cidash-queued{cursor:pointer}.cidash-queued:hover{filter:brightness(1.13)}.cidash-queued:focus-visible{outline:2px solid var(--link);outline-offset:1px}.cidash-qpos{margin-left:5px;font-weight:700;opacity:.92;font-variant-numeric:tabular-nums}.cidash-qpos:empty{display:none}.lvci-backfill{border:1px solid var(--border);border-left:3px solid #1f6feb;background:var(--surface);border-radius:10px;padding:14px 16px;margin:0 0 18px}.lvci-bf-main{display:flex;align-items:center;gap:14px;flex-wrap:wrap}.lvci-bf-icon{font-size:1.5em;line-height:1}.lvci-bf-text{flex:1 1 320px;min-width:240px;font-size:.9em;line-height:1.5}.lvci-bf-text strong{display:block;font-size:1.03em;margin-bottom:2px}.lvci-bf-text span{color:var(--fg-muted)}.lvci-bf-actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.lvci-bf-tok{margin-top:12px;border-top:1px solid var(--border);padding-top:12px;font-size:.84em;color:var(--fg-muted)}.lvci-bf-status{font-size:.82em;margin-top:10px}.lvci-bf-status:empty{display:none}.lvci-bf-note{display:block;margin-top:8px}.lvci-bf-info{margin-top:8px;font-size:.92em}.lvci-bf-info>summary{display:inline-block;cursor:pointer;color:var(--link);list-style:none;font-weight:600}.lvci-bf-info>summary::-webkit-details-marker{display:none}.lvci-bf-info>summary:hover{text-decoration:underline}.lvci-bf-info[open]>summary{margin-bottom:8px}.lvci-bf-infobody{color:var(--fg-muted);line-height:1.55;border-left:2px solid #1f6feb;padding-left:12px}.lvci-bf-cfg{display:inline-block;margin-top:8px;color:var(--link);font-weight:600}.cidash-hist-sec{margin:0 0 16px}.cidash-hist-lbl{display:block;font-size:.72em;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--fg-muted);margin:0 0 7px}.cidash-hist-scope{display:flex;flex-direction:column;gap:9px}.cidash-hist-radio{display:flex;align-items:center;gap:9px;font-size:.9em;cursor:pointer;user-select:none}.cidash-hist-radio input{accent-color:var(--link);width:15px;height:15px;margin:0;flex:0 0 auto}.cidash-hist-radio .sub{color:var(--fg-muted);font-size:.88em}.cidash-hist-rangerow{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center;padding:2px 0 4px 25px}.cidash-hist-rangerow label{display:flex;align-items:center;gap:7px;font-size:.84em;color:var(--fg-muted)}#cidash-hist-from,#cidash-hist-to{padding:7px 9px;background:var(--bg);color:var(--fg);border:1px solid var(--border);border-radius:6px;font-size:.85em;font-family:inherit;max-width:248px}.cidash-hist-spectools{display:flex;gap:14px;margin:2px 0 6px 25px;font-size:.8em}.cidash-hist-spectools a{color:var(--link);cursor:pointer}.cidash-hist-spectools a:hover{text-decoration:underline}.cidash-hist-speclist{display:flex;flex-direction:column;gap:1px;max-height:210px;overflow:auto;margin-left:25px;padding:5px;border:1px solid var(--border);border-radius:7px;background:var(--bg)}.cidash-hist-specitem{display:flex;align-items:center;gap:9px;padding:5px 7px;border-radius:5px;font-size:.84em;cursor:pointer;min-width:0}.cidash-hist-specitem:hover{background:var(--surface)}.cidash-hist-specitem input{accent-color:var(--link);width:14px;height:14px;margin:0;flex:0 0 auto}.cidash-hist-specitem .sh{font-family:ui-monospace,Menlo,monospace;color:var(--fg-muted);flex:0 0 auto}.cidash-hist-specitem .ms{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--fg)}.cidash-hist-intro{margin:0 0 16px;color:var(--fg-muted);font-size:.86em;line-height:1.55}.cidash-hist-actshead{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px 10px;margin:0 0 9px}.cidash-hist-quick{display:flex;flex-wrap:wrap;gap:6px}.cidash-hist-chip{border:1px solid var(--border);background:var(--bg);color:var(--fg);border-radius:999px;padding:4px 11px;font-size:.76em;font-weight:600;cursor:pointer;font-family:inherit}.cidash-hist-chip:hover{border-color:var(--link);color:var(--link)}.cidash-hist-acts{display:flex;flex-direction:column;gap:7px}.cidash-hist-actsempty{color:var(--fg-muted);font-size:.85em;padding:4px 2px}.cidash-hist-act{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"info controls" "meta controls";gap:3px 16px;align-items:center;padding:10px 14px;border:1px solid var(--border);border-radius:8px;background:var(--bg)}.cidash-hist-act.skip .cidash-hist-actinfo,.cidash-hist-act.skip .cidash-hist-actmeta{opacity:.5}.cidash-hist-actinfo{grid-area:info;min-width:0}.cidash-hist-actname{font-size:.9em;font-weight:600}.cidash-hist-actsub{color:var(--fg-muted);font-size:.82em;margin-top:1px;line-height:1.4}.cidash-hist-actmeta{grid-area:meta;display:flex;align-items:center;flex-wrap:wrap;gap:4px 14px;min-width:0;font-size:.76em;color:var(--fg-muted)}.cidash-hist-actcount{white-space:nowrap;font-variant-numeric:tabular-nums}.cidash-hist-actcount:empty{display:none}.cidash-hist-plats{display:flex;align-items:center;gap:12px;flex-wrap:wrap}.cidash-hist-plats label{display:inline-flex;align-items:center;gap:5px;cursor:pointer;user-select:none}.cidash-hist-plats input{accent-color:var(--link);width:13px;height:13px;margin:0}.cidash-seg{grid-area:controls;justify-self:end;align-self:center;display:inline-flex;flex:0 0 auto;border:1px solid var(--border);border-radius:7px;overflow:hidden}.cidash-seg button{border:0;background:transparent;color:var(--fg-muted);padding:6px 13px;font-size:.78em;font-weight:600;cursor:pointer;font-family:inherit;line-height:1.5}.cidash-seg button+button{border-left:1px solid var(--border)}.cidash-seg button.on{background:var(--link);color:#fff}.cidash-seg button:disabled{opacity:.34;cursor:default}.cidash-seg button:not(.on):not(:disabled):hover{background:var(--surface);color:var(--fg)}@media(max-width:560px){.cidash-hist-act{grid-template-columns:1fr;grid-template-areas:"info" "meta" "controls";gap:7px 0}.cidash-seg{justify-self:start}}.cidash-hist-summary{font-size:.84em;color:var(--fg-muted);margin:0 0 12px}.cidash-hist-summary b{color:var(--fg)}
+    .cidash-run{display:inline-block;color:var(--fg-muted);font-size:.95em;line-height:1;text-decoration:none;opacity:.5;transition:opacity .12s,color .12s}.cidash-run:hover{opacity:1;color:var(--link);text-decoration:none}tr:hover .cidash-run{opacity:.85}.snap-glyph{display:inline-flex;align-items:center;color:var(--fg-muted);opacity:.6;text-decoration:none;flex:0 0 auto;transition:opacity .12s,color .12s}.snap-glyph:hover{opacity:1;color:var(--link)}tr:hover .snap-glyph{opacity:.85}.cidash-btn{border:1px solid var(--border);border-radius:6px;padding:8px 14px;font-size:.85em;font-weight:600;cursor:pointer;font-family:inherit}.cidash-go{background:#238636;color:#fff;border-color:transparent}.cidash-go:hover{background:#2ea043}.cidash-go:disabled{opacity:.6;cursor:default}.cidash-ghost{background:var(--bg);color:var(--fg)}.cidash-ghost:hover{border-color:var(--link)}.cidash-danger{background:#da3633;color:#fff;border-color:transparent}.cidash-danger:hover{background:#f85149}.cidash-danger:disabled{opacity:.6;cursor:default}.cidash-queued{cursor:pointer}.cidash-queued:hover{filter:brightness(1.13)}.cidash-queued:focus-visible{outline:2px solid var(--link);outline-offset:1px}.cidash-qpos{margin-left:5px;font-weight:700;opacity:.92;font-variant-numeric:tabular-nums}.cidash-qpos:empty{display:none}.lvci-backfill{border:1px solid var(--border);border-left:3px solid #1f6feb;background:var(--surface);border-radius:10px;padding:14px 16px;margin:0 0 18px}.lvci-bf-main{display:flex;align-items:center;gap:14px;flex-wrap:wrap}.lvci-bf-icon{font-size:1.5em;line-height:1}.lvci-bf-text{flex:1 1 320px;min-width:240px;font-size:.9em;line-height:1.5}.lvci-bf-text strong{display:block;font-size:1.03em;margin-bottom:2px}.lvci-bf-text span{color:var(--fg-muted)}.lvci-bf-actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.lvci-bf-tok{margin-top:12px;border-top:1px solid var(--border);padding-top:12px;font-size:.84em;color:var(--fg-muted)}.lvci-bf-status{font-size:.82em;margin-top:10px}.lvci-bf-status:empty{display:none}.lvci-bf-note{display:block;margin-top:8px}.lvci-bf-info{margin-top:8px;font-size:.92em}.lvci-bf-info>summary{display:inline-block;cursor:pointer;color:var(--link);list-style:none;font-weight:600}.lvci-bf-info>summary::-webkit-details-marker{display:none}.lvci-bf-info>summary:hover{text-decoration:underline}.lvci-bf-info[open]>summary{margin-bottom:8px}.lvci-bf-infobody{color:var(--fg-muted);line-height:1.55;border-left:2px solid #1f6feb;padding-left:12px}.lvci-bf-cfg{display:inline-block;margin-top:8px;color:var(--link);font-weight:600}.cidash-hist-sec{margin:0 0 16px}.cidash-hist-lbl{display:block;font-size:.72em;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--fg-muted);margin:0 0 7px}.cidash-hist-scope{display:flex;flex-direction:column;gap:9px}.cidash-hist-radio{display:flex;align-items:center;gap:9px;font-size:.9em;cursor:pointer;user-select:none}.cidash-hist-radio input{accent-color:var(--link);width:15px;height:15px;margin:0;flex:0 0 auto}.cidash-hist-radio .sub{color:var(--fg-muted);font-size:.88em}.cidash-hist-rangerow{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center;padding:2px 0 4px 25px}.cidash-hist-rangerow label{display:flex;align-items:center;gap:7px;font-size:.84em;color:var(--fg-muted)}#cidash-hist-from,#cidash-hist-to{padding:7px 9px;background:var(--bg);color:var(--fg);border:1px solid var(--border);border-radius:6px;font-size:.85em;font-family:inherit;max-width:248px}.cidash-hist-spectools{display:flex;gap:14px;margin:2px 0 6px 25px;font-size:.8em}.cidash-hist-spectools a{color:var(--link);cursor:pointer}.cidash-hist-spectools a:hover{text-decoration:underline}.cidash-hist-speclist{display:flex;flex-direction:column;gap:1px;max-height:210px;overflow:auto;margin-left:25px;padding:5px;border:1px solid var(--border);border-radius:7px;background:var(--bg)}.cidash-hist-specitem{display:flex;align-items:center;gap:9px;padding:5px 7px;border-radius:5px;font-size:.84em;cursor:pointer;min-width:0}.cidash-hist-specitem:hover{background:var(--surface)}.cidash-hist-specitem input{accent-color:var(--link);width:14px;height:14px;margin:0;flex:0 0 auto}.cidash-hist-specitem .sh{font-family:ui-monospace,Menlo,monospace;color:var(--fg-muted);flex:0 0 auto}.cidash-hist-specitem .ms{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--fg)}.cidash-hist-revfilter{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:0 0 10px}.cidash-hist-search{flex:1 1 220px;min-width:150px;padding:7px 10px;background:var(--bg);color:var(--fg);border:1px solid var(--border);border-radius:6px;font-size:.85em;font-family:inherit}.cidash-hist-inclchk{display:inline-flex;align-items:center;gap:6px;font-size:.82em;color:var(--fg-muted);cursor:pointer;white-space:nowrap}.cidash-hist-inclchk input{accent-color:var(--link);width:14px;height:14px;margin:0}.cidash-hist-specitem .cidash-hist-deptag{margin-left:auto;font-size:.7em;color:var(--fg-muted);border:1px solid var(--border);border-radius:4px;padding:0 5px;flex:0 0 auto}.cidash-hist-specempty{color:var(--fg-muted);font-size:.84em;padding:8px}.cidash-hist-intro{margin:0 0 16px;color:var(--fg-muted);font-size:.86em;line-height:1.55}.cidash-hist-actshead{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px 10px;margin:0 0 9px}.cidash-hist-quick{display:flex;flex-wrap:wrap;gap:6px}.cidash-hist-chip{border:1px solid var(--border);background:var(--bg);color:var(--fg);border-radius:999px;padding:4px 11px;font-size:.76em;font-weight:600;cursor:pointer;font-family:inherit}.cidash-hist-chip:hover{border-color:var(--link);color:var(--link)}.cidash-hist-acts{display:flex;flex-direction:column;gap:7px}.cidash-hist-actsempty{color:var(--fg-muted);font-size:.85em;padding:4px 2px}.cidash-hist-act{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"info controls" "meta controls";gap:3px 16px;align-items:center;padding:10px 14px;border:1px solid var(--border);border-radius:8px;background:var(--bg)}.cidash-hist-act.skip .cidash-hist-actinfo,.cidash-hist-act.skip .cidash-hist-actmeta{opacity:.5}.cidash-hist-actinfo{grid-area:info;min-width:0}.cidash-hist-actname{font-size:.9em;font-weight:600}.cidash-hist-actsub{color:var(--fg-muted);font-size:.82em;margin-top:1px;line-height:1.4}.cidash-hist-actmeta{grid-area:meta;display:flex;align-items:center;flex-wrap:wrap;gap:4px 14px;min-width:0;font-size:.76em;color:var(--fg-muted)}.cidash-hist-actcount{white-space:nowrap;font-variant-numeric:tabular-nums}.cidash-hist-actcount:empty{display:none}.cidash-hist-plats{display:flex;align-items:center;gap:12px;flex-wrap:wrap}.cidash-hist-plats label{display:inline-flex;align-items:center;gap:5px;cursor:pointer;user-select:none}.cidash-hist-plats input{accent-color:var(--link);width:13px;height:13px;margin:0}.cidash-seg{grid-area:controls;justify-self:end;align-self:center;display:inline-flex;flex:0 0 auto;border:1px solid var(--border);border-radius:7px;overflow:hidden}.cidash-seg button{border:0;background:transparent;color:var(--fg-muted);padding:6px 13px;font-size:.78em;font-weight:600;cursor:pointer;font-family:inherit;line-height:1.5}.cidash-seg button+button{border-left:1px solid var(--border)}.cidash-seg button.on{background:var(--link);color:#fff}.cidash-seg button:disabled{opacity:.34;cursor:default}.cidash-seg button:not(.on):not(:disabled):hover{background:var(--surface);color:var(--fg)}@media(max-width:560px){.cidash-hist-act{grid-template-columns:1fr;grid-template-areas:"info" "meta" "controls";gap:7px 0}.cidash-seg{justify-self:start}}.cidash-hist-summary{font-size:.84em;color:var(--fg-muted);margin:0 0 12px}.cidash-hist-summary b{color:var(--fg)}
   </style>
 </head>
 <body>
@@ -196,7 +226,15 @@
     // "dialog disappeared on its own" bug).
     function lvciModalOpen() {
       var m = document.getElementById('lvci-modal');
-      return !!(m && m.style.display === 'block');
+      if (m && m.style.display === 'block') return true;
+      // The Populate-history and Debug Run dialogs are their own modals; reloading
+      // while either is open destroys its in-flight work too (the Debug Run
+      // "dialog vanished while the container booted" bug).
+      var h = document.getElementById('cidash-hist-modal');
+      if (h && h.style.display === 'block') return true;
+      var d = document.getElementById('cidash-debug-modal');
+      if (d && d.style.display === 'block') return true;
+      return false;
     }
     // Auto-refresh on the cadence the server picked (60 s while CI is live, else
     // 15 min) -- but NEVER while a dialog is open, because reloading the page destroys
@@ -242,7 +280,8 @@
   </div>
   <script>
   (function(){
-    var RT = {"unit-tests": {"label": "Unit Tests", "platforms": {"windows": {"wf": "unit-tests-windows-container.yml", "inputs": {"commit_sha": "{sha}"}}}}};
+    var RT = {"unit-tests": {"label": "Unit Tests", "platforms": {"windows": {"wf": "unit-tests-windows-container.yml", "inputs": {"commit_sha": "{sha}"}}, "linux": {"wf": "unit-tests-linux-container.yml", "inputs": {"commit_sha": "{sha}"}}}}};
+    var RT_TIMING = {"unit-tests": {"windows": {"total": 518.5, "work": null}, "linux": {"total": 107.0, "work": null}}};
     var REPO = "antsundq/lunit-integration-test";
     var BRANCH = "main";
     var TOK_KEY = "lvci_dispatch_token";
@@ -320,6 +359,16 @@
     var qQueuePos = null, qQueueTotal = 0, qQueueAt = 0;
     function qLoad(){ try{ return JSON.parse(localStorage.getItem(QKEY)||"{}")||{}; }catch(e){ return {}; } }
     function qSave(o){ try{ localStorage.setItem(QKEY, JSON.stringify(o)); }catch(e){} }
+    function resultCell(c, sha){
+      // The cell carrying a re-runnable activity's result OR its in-flight run - both
+      // are valid targets to overlay an optimistic "Queued" spinner onto. A finished
+      // result is a cidash-cap-cell; a queued/running auto-run is a cidash-active-cell
+      // (tagged so the Populate-history dialog can re-run an in-flight activity). Matching
+      // both is what lets a re-run of an in-flight cell show its Queued badge, not just
+      // re-runs of finished ones (the latest revision's activity is usually still in flight).
+      return document.querySelector('td.cidash-cap-cell[data-cap="'+c+'"][data-sha="'+sha+'"]')
+          || document.querySelector('td.cidash-active-cell[data-cap="'+c+'"][data-sha="'+sha+'"]');
+    }
     function qPaint(td, c, sha){
       // Overlay the spinning "Queued" badge onto the cell, replacing its run glyph.
       // The badge is now a BUTTON (not a link): clicking it opens the manage dialog
@@ -424,7 +473,7 @@
           // result cell and remember its original badge so a failed/cancelled dispatch
           // can restore it. Same bridge the report viewer's "Re-run" uses (see qSync),
           // now reachable from the Populate-history dialog's per-activity "Re-run".
-          var rc = document.querySelector('td.cidash-cap-cell[data-cap="'+c+'"][data-sha="'+sha+'"]');
+          var rc = resultCell(c, sha);
           if(rc){
             var oR = qLoad(); var kR = c+'|'+sha;
             if(oR[kR] && !oR[kR].orig){ oR[kR].orig = rc.innerHTML; qSave(oR); }
@@ -508,20 +557,31 @@
         var o = qLoad(); var e = o[key]; if(!e){ done(); return; }
         e.runs = e.runs || [];
         var have = {}; e.runs.forEach(function(r){ have[r.plat]=1; });
+        var claimedDone = false;
         resps.forEach(function(rp){
           var cands = rp.runs.filter(function(run){
             var created = Date.parse(run.created_at || run.run_started_at || 0);
-            var active = ['queued','in_progress','requested','waiting','pending','action_required'].indexOf(run.status) >= 0;
-            return active && created >= (t0 - 12000) && !claim[run.id];
+            // Claim recently-COMPLETED runs too: a dispatch that dies within
+            // seconds (startup failure, spending limit, cancelled while queued)
+            // is already 'completed' by the time this lookup runs, and skipping
+            // it left the cell an unconfirmable spinner that silently timed out
+            // at QTTL. Claiming it lets qSync turn the cell into the sticky red
+            // "Failed" bang instead. The t0 window keeps unrelated old runs out.
+            var live = ['queued','in_progress','requested','waiting','pending','action_required','completed'].indexOf(run.status) >= 0;
+            return live && created >= (t0 - 12000) && !claim[run.id];
           }).sort(function(a,b){ return Date.parse(b.created_at) - Date.parse(a.created_at); });
           (byWf[rp.wf]||[]).forEach(function(plat){
             if(have[plat]) return;
             var run = cands.shift(); if(!run) return;
             e.runs.push({ wf: rp.wf, plat: plat, id: run.id, url: run.html_url, status: run.status });
+            if(run.status === 'completed') claimedDone = true;
             claim[run.id] = 1; have[plat] = 1;
           });
         });
         o[key] = e; qSave(o);
+        // A claimed run has already finished — judge it now (red bang / done
+        // handoff) instead of leaving a spinner up until the next lazy sync.
+        if(claimedDone) qRecheck();
         var gotAll = entryItems(c, e).every(function(it){ return (e.runs||[]).some(function(r){ return r.plat===it.plat; }); });
         if(!gotAll && attempt < 5){ setTimeout(function(){ captureRuns(c, sha, attempt+1, null); }, 2000); }
         else { done(); }
@@ -553,6 +613,37 @@
           if(changed) qSave(o);
         }).catch(function(){});
     }
+    function captureBatchRun(wf, t0, attempt){
+      // A warm-container batch is ONE run of the backfill workflow covering every
+      // SHA in its list — captureRuns can never attribute it (it queries the
+      // per-revision workflow, and its per-cell claim would hand a single run to
+      // just the first sha anyway; the exact gap captureSnapshotRun closes for
+      // snapshots). Look the batch run up once and write it into EVERY entry
+      // stamped with this backfill workflow (dispatchCells sets entry.batchWf)
+      // that still lacks a run id, so the whole group outlives the optimistic
+      // window — or turns into the sticky red bang together if the run dies
+      // before starting.
+      var tok = getTok(); if(!tok) return;
+      t0 = t0 || Date.now(); attempt = attempt || 1;
+      fetch('https://api.github.com/repos/'+REPO+'/actions/workflows/'+encodeURIComponent(wf)+'/runs?event=workflow_dispatch&per_page=20',
+        { headers:{ 'Authorization':'Bearer '+tok, 'Accept':'application/vnd.github+json', 'X-GitHub-Api-Version':'2022-11-28' } })
+        .then(function(r){ return r.ok ? r.json() : null; })
+        .then(function(j){
+          var runs = (j && j.workflow_runs) || [];
+          var run = runs.filter(function(rn){
+            return Date.parse(rn.created_at || rn.run_started_at || 0) >= (t0 - 12000);
+          }).sort(function(a,b){ return Date.parse(b.created_at) - Date.parse(a.created_at); })[0];
+          if(!run){ if(attempt < 4){ setTimeout(function(){ captureBatchRun(wf, t0, attempt+1); }, 2500); } return; }
+          var o = qLoad(); var changed = false;
+          Object.keys(o).forEach(function(key){
+            var e = o[key];
+            if(!e || e.batchWf !== wf || (e.runs||[]).length) return;
+            e.runs = [{ wf: wf, plat: (e.plats||[])[0] || 'windows', id: run.id, url: run.html_url, status: run.status }];
+            changed = true;
+          });
+          if(changed){ qSave(o); if(run.status === 'completed') qRecheck(); }
+        }).catch(function(){});
+    }
     function qSync(){
       // Reconcile the optimistic "Queued" overlays against the REAL run status on
       // GitHub so a cell never silently reverts to its run glyph: a run still
@@ -572,9 +663,21 @@
         if(k.indexOf('snapshots|')===0){ var ts=o[k].ts||0; if(!snapTs||ts<snapTs) snapTs=ts; if(!((o[k].runs||[]).length)) snapNeedsId=true; }
       });
       if(snapNeedsId) captureSnapshotRun(snapTs);
+      // Batch entries share ONE backfill run, so route their id lookup through
+      // captureBatchRun (once per workflow, from the earliest entry ts) —
+      // captureRuns would query the per-revision workflow and find nothing.
+      var batchNeed = {};
+      live.forEach(function(k){
+        var eB = o[k];
+        if(eB.batchWf && !((eB.runs||[]).length)){
+          var bts = eB.ts || 0;
+          if(!(eB.batchWf in batchNeed) || bts < batchNeed[eB.batchWf]) batchNeed[eB.batchWf] = bts;
+        }
+      });
+      Object.keys(batchNeed).forEach(function(bwf){ captureBatchRun(bwf, batchNeed[bwf]); });
       live.forEach(function(k){
         var c = k.slice(0, k.indexOf('|')); var sha = k.slice(k.indexOf('|')+1);
-        if(c!=='snapshots' && !((o[k].runs||[]).length)) captureRuns(c, sha);
+        if(c!=='snapshots' && !o[k].batchWf && !((o[k].runs||[]).length)) captureRuns(c, sha);
       });
       // Every run id we still need a verdict on, across all non-terminal entries.
       var wantIds = {};
@@ -653,7 +756,7 @@
         if(!e){ delete o[key]; changed = true; return; }
         var painted = document.querySelector('td.cidash-queued-cell[data-qcap="'+c+'"][data-qsha="'+sha+'"]');
         var a = document.querySelector('a.cidash-run[data-cap="'+c+'"][data-sha="'+sha+'"]');
-        var rc = document.querySelector('td.cidash-cap-cell[data-cap="'+c+'"][data-sha="'+sha+'"]');
+        var rc = resultCell(c, sha);
         if(e.failed){
           if(rc){
             var frts = Date.parse(rc.getAttribute('data-ts')||'') || 0;
@@ -823,6 +926,20 @@
       }
       return out.join('');
     }
+    function qReportUrl(entry){
+      // A failed overlay that replaced a deployed RESULT cell stashed that cell's
+      // original chip HTML (entry.orig). If that chip linked to a deployed report
+      // (anything other than a bare GitHub Actions run page), hand it back so the
+      // failed dialog can route to the report - where a unit-test / analyzer failure
+      // is actually explained - instead of only the Actions log. A hard run failure
+      // that produced no report (no orig, or an Actions-only link) yields '' -> the
+      // dialog keeps just the "View run" (Actions) button.
+      var o = entry && entry.orig; if(!o) return '';
+      var m = /href="([^"]+)"/i.exec(o); if(!m) return '';
+      var u = m[1];
+      if(/github\.com\/[^"']*\/actions\//i.test(u)) return '';
+      return u;
+    }
     function renderQ(){
       var c = qState.cap, sha = qState.sha; if(!c) return;
       var o = qLoad(); var entry = o[c+'|'+sha]; var def = RT[c];
@@ -837,14 +954,20 @@
       if(!failed && live.length>1 && pos){ h += '<p style="margin:0 0 12px;font-size:.85em">Place in queue: <strong>#'+pos+'</strong> <span style="color:var(--fg-muted)">of '+live.length+' queued from this browser (oldest first).</span></p>'; }
       h += '<div id="cidash-q-status" style="font-size:.82em;min-height:1.2em;margin:0 0 12px"></div>';
       h += '<div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">';
+      var repUrl = failed ? qReportUrl(entry) : '';
       h += qViewLinks(c, entry);
-      if(failed){ h += '<button class="cidash-btn cidash-ghost" id="cidash-q-dismiss">Dismiss</button>'; }
+      if(failed){
+        if(repUrl){ h += '<a class="cidash-btn" style="text-decoration:none" href="'+repUrl+'" target="_blank" rel="noopener">View report \u2197</a>'; }
+        h += '<button class="cidash-btn" id="cidash-q-rerun">Re-run</button>';
+        h += '<button class="cidash-btn cidash-ghost" id="cidash-q-dismiss">Dismiss</button>';
+      }
       else { h += '<button class="cidash-btn cidash-danger" id="cidash-q-cancel">\u2715 Cancel run</button>'; }
       h += '</div>';
-      if(failed){ h += '<p style="color:var(--fg-muted);font-size:.76em;margin:12px 0 0"><strong>View</strong> opens the failed run on GitHub to see what went wrong. <strong>Dismiss</strong> clears this badge so you can run it again from the dashboard.</p>'; }
+      if(failed){ h += '<p style="color:var(--fg-muted);font-size:.76em;margin:12px 0 0">'+(repUrl?'<strong>View report</strong> opens this activity\u2019s report to see what failed. ':'')+'<strong>View</strong> opens the failed run on GitHub to see what went wrong. <strong>Re-run</strong> starts it again for this commit. <strong>Dismiss</strong> clears this badge.</p>'; }
       else { h += '<p style="color:var(--fg-muted);font-size:.76em;margin:12px 0 0"><strong>Cancel run</strong> stops it on GitHub Actions (uses the same token you queued it with). <strong>View</strong> opens it on GitHub, where you can watch it or stop it manually.</p>'; }
       $("cidash-q-body").innerHTML = h;
       var cb=$("cidash-q-cancel"); if(cb) cb.addEventListener('click', function(){ cancelQueued(c, sha); });
+      var rb=$("cidash-q-rerun"); if(rb) rb.addEventListener('click', function(){ var rp=(entry.parent||''), rs=(entry.short||sha.slice(0,7)); qForget(c, sha); cidashQClose(); openRun(c, sha, rp, rs); });
       var db=$("cidash-q-dismiss"); if(db) db.addEventListener('click', function(){ qForget(c, sha); cidashQClose(); });
     }
     function openQ(c, sha){
@@ -975,9 +1098,13 @@
     // history doesn't trip GitHub's secondary rate limits. Resolves with an
     // {ok, err, total} tally; the caller owns its own status line + buttons.
     // Turn collected dispatch failures into an accurate message. A 404 means the
-    // targeted workflow file is not installed on this repo (its LabVIEW CI tooling
-    // is out of date) -- NOT a token problem -- so callers do not re-prompt for a
-    // token in that case. .tok = whether the failure is token/permission related.
+    // targeted workflow is not RUNNABLE on this repo -- the file is not installed
+    // (tooling out of date), or it exists but GitHub never registered it as a
+    // workflow (fork installs that pushed the files while Actions was disabled) --
+    // NOT a token problem, so callers do not re-prompt for a token in that case.
+    // Both causes share one remedy: a tooling update rewrites every workflow file
+    // (version stamp), so the update push registers them. .tok = whether the
+    // failure is token/permission related.
     function dispatchFailMsg(fails){
       fails = fails || [];
       var has = function(code){ return fails.some(function(f){ return f.status===code; }); };
@@ -985,13 +1112,44 @@
       if(has(404)){
         var wfs=[]; fails.forEach(function(f){ if(f.status===404 && f.wf && wfs.indexOf(f.wf)<0) wfs.push(f.wf); });
         var list=wfs.map(function(w){ return '<code>'+esc(w)+'</code>'; }).join(', ');
-        return { html:'<strong>Not a token problem</strong> \u2014 your saved token worked, but '+(wfs.length>1?'these workflows are':'this workflow is')+' not installed on <code>'+esc(REPO)+'</code> (HTTP 404): '+list+'. This repository\u2019s LabVIEW CI tooling is out of date \u2014 update it from <strong>What\u2019s new \u2192 Update</strong> to add the missing workflow'+(wfs.length>1?'s':'')+', then queue again.', tok:false };
+        return { html:'<strong>Not a token problem</strong> \u2014 your saved token worked, but '+(wfs.length>1?'these workflows are':'this workflow is')+' not runnable on <code>'+esc(REPO)+'</code> (HTTP 404): '+list+'. Either the file is not installed (this repository\u2019s LabVIEW CI tooling is out of date), or it exists but GitHub never registered it as a workflow \u2014 typical for fork installs that pushed the pipeline while Actions was disabled. Both have the same fix: update from <strong>What\u2019s new \u2192 Update</strong> \u2014 the update rewrites every workflow file so GitHub registers '+(wfs.length>1?'them':'it')+' \u2014 then queue again.', tok:false };
       }
       if(has(403)) return { html:'The saved token is missing the <strong>Actions: Read and write</strong> permission on <code>'+esc(REPO)+'</code> (HTTP 403). On the token page set <strong>Permissions \u2192 Repository permissions \u2192 Actions \u2192 Read and write</strong>, then <strong>Update</strong>. <a href="'+tokenSetupUrl()+'" target="_blank" rel="noopener" style="color:var(--link)">Update token \u2197</a>', tok:true };
       if(has(422)) return { html:'GitHub rejected the dispatch (HTTP 422) \u2014 usually a bad branch ref (<code>'+esc(BRANCH)+'</code>) or inputs.', tok:false };
       var st=(fails[0]||{}).status; return { html:'Could not queue runs (HTTP '+esc(String(st||'?'))+'). <a href="https://github.com/'+REPO+'/actions" target="_blank" rel="noopener" style="color:var(--link)">View Actions \u2197</a>', tok:false };
     }
-    function dispatchCells(cells, statusFn){
+    var QUEUE_CONFIRM_MAX = 10;   // confirm before firing more than this many runs at once
+    // Count how many workflow runs dispatchCells(cells, opts) will queue, WITHOUT
+    // dispatching -- so a large batch can be confirmed first. Mirrors the `total`
+    // computed inside dispatchCells (snapshots -> one backfill; each warm-container
+    // batch (cap,platform) group -> one dispatch; remaining per-revision platforms
+    // counted individually).
+    function dispatchTotal(cells, opts){
+      opts = opts || {}; var reuse = !!opts.reuse;
+      var sawSnap=false; var perRev=[];
+      (cells||[]).forEach(function(x){
+        if(x.cap==='snapshots'){ sawSnap=true; }
+        else if(!(x.cap==='vidiff' && !x.parent)){ perRev.push(x); }
+      });
+      var batchSeen={}; var batchGroups=0; var perRevPlats=0;
+      perRev.forEach(function(x){
+        cellPlatforms(x).forEach(function(plat){
+          var p=(RT[x.cap] && RT[x.cap].platforms) ? RT[x.cap].platforms[plat] : null;
+          if(reuse && p && p.batch){ var key=x.cap+'|'+plat; if(!batchSeen[key]){ batchSeen[key]=1; batchGroups++; } }
+          else { perRevPlats++; }
+        });
+      });
+      return perRevPlats + (sawSnap?1:0) + batchGroups;
+    }
+    // Ask before queuing a large batch (guards against accidentally firing a whole
+    // history from the Populate-history dialog). Returns false only when the user
+    // cancels a >QUEUE_CONFIRM_MAX batch; a native confirm() keeps it robust + modal.
+    function confirmLargeQueue(n){
+      if(n <= QUEUE_CONFIRM_MAX) return true;
+      return window.confirm('This will queue '+n+' workflow runs on '+REPO+'.\n\nThat can use a lot of GitHub Actions minutes. Queue all '+n+' now?');
+    }
+    function dispatchCells(cells, statusFn, opts){
+      opts = opts || {}; var reuse = !!opts.reuse;
       var perRev=[]; var snapShas=[]; var sawSnap=false; var snapForce=false;
       cells.forEach(function(x){
         if(x.cap==='snapshots'){
@@ -1001,14 +1159,53 @@
         else if(!(x.cap==='vidiff' && !x.parent)){ perRev.push(x); }   // a root commit has no base to diff
       });
       perRev.sort(function(a,b){ return b.order - a.order; });   // oldest first
-      var total=perRev.reduce(function(n,x){ return n + cellPlatforms(x).length; }, 0) + (sawSnap?1:0);
+      // Warm-container batch routing: when "keep one container warm" is on, every
+      // (cap, platform) that exposes a 'batch' backfill workflow is collapsed into
+      // ONE dispatch carrying the whole oldest→newest SHA list, so a single warm
+      // container renders every selected revision (docker exec per commit) instead
+      // of a fresh container per revision. A cell's platforms WITHOUT a batch
+      // target (e.g. Linux) keep dispatching per revision. x._plats holds the
+      // per-revision platforms that survive after batch ones are siphoned off.
+      var batchGroups={}; var batchOrder=[];
+      perRev.forEach(function(x){
+        var keep=[];
+        cellPlatforms(x).forEach(function(plat){
+          var p=(RT[x.cap] && RT[x.cap].platforms) ? RT[x.cap].platforms[plat] : null;
+          if(reuse && p && p.batch){
+            var key=x.cap+'|'+plat; var g=batchGroups[key];
+            if(!g){ g={cap:x.cap, plat:plat, wf:p.batch.wf, shasInput:(p.batch.shas_input||'shas'), shas:[], force:false}; batchGroups[key]=g; batchOrder.push(key); }
+            if(g.shas.indexOf(x.sha)<0) g.shas.push(x.sha);
+            if(x.mode==='rerun' || x.done) g.force=true;
+          } else { keep.push(plat); }
+        });
+        x._plats=keep;
+      });
+      var perRevActive=perRev.filter(function(x){ return x._plats.length>0; });
+      var total=perRevActive.reduce(function(n,x){ return n + x._plats.length; }, 0) + (sawSnap?1:0) + batchOrder.length;
       var t0=Date.now(); var ok=0, err=0, done=0; var fails=[];
       // Paint EVERY targeted cell as "Queued" up front, in one synchronous pass, so
       // the whole batch lights up the instant you click - independent of the throttled
       // dispatch chain below. A dispatch that truly fails then reverts just its own
       // cell, and a thrown error mid-chain can no longer leave the earlier cells un-queued.
       if(sawSnap){ snapShas.forEach(function(sha){ markQueued('snapshots', sha, ['all'], '', t0); }); }
-      perRev.forEach(function(x){ var d=RT[x.cap]; if(d) markQueued(x.cap, x.sha, cellPlatforms(x), x.parent, t0); });
+      batchOrder.forEach(function(key){ var g=batchGroups[key]; g.shas.forEach(function(sha){ markQueued(g.cap, sha, [g.plat], '', t0); }); });
+      perRevActive.forEach(function(x){ var d=RT[x.cap]; if(d) markQueued(x.cap, x.sha, x._plats, x.parent, t0); });
+      // Stamp every batch-group member with its backfill workflow so run-id
+      // capture (captureBatchRun, incl. the qSync retry path) knows where the
+      // ONE shared run lives. Done AFTER the markQueued paints above, because
+      // markQueued rebuilds the stored entry and would drop the stamp. (A cell
+      // whose OTHER platform also dispatches per-revision gets re-marked when
+      // that dispatch resolves and loses the stamp; it stays alive via its
+      // per-revision run id, and the server-side attribution — backfill
+      // run-names carry the SHA list — still covers the batch half.)
+      if(batchOrder.length){
+        var oStamp = qLoad();
+        batchOrder.forEach(function(key){
+          var g = batchGroups[key];
+          g.shas.forEach(function(sha){ var eS = oStamp[g.cap+'|'+sha]; if(eS) eS.batchWf = g.wf; });
+        });
+        qSave(oStamp);
+      }
       statusFn('Queuing '+total+' workflow'+(total>1?'s':'')+'\u2026', null);
       var chain=Promise.resolve();
       // 1) Snapshots — one backfill run for the whole history (oldest→newest, deduped).
@@ -1023,11 +1220,29 @@
           }).catch(function(){ err++; });
         });
       }
-      // 2) Per-revision capabilities, oldest first, gently throttled.
-      perRev.forEach(function(x){
+      // 2) Warm-container batch runs — one dispatch per (cap, platform) carrying the
+      // whole SHA list; the backfill workflow walks them oldest→newest in one
+      // container. force=true when any selected revision is a re-run/already done.
+      batchOrder.forEach(function(key){
+        var g=batchGroups[key];
+        chain=chain.then(function(){
+          var inputs={}; inputs[g.shasInput]=g.shas.join(' '); if(g.force) inputs.force='true';
+          return dispatchOne(g.wf, inputs).then(function(r){
+            done++;
+            // On success, capture the ONE batch run's id into every member entry
+            // (mirrors the snapshots path) — without it the whole group's badges
+            // could never be reconciled and silently expired at QTTL.
+            if(r.ok){ ok++; captureBatchRun(g.wf, t0); }
+            else { err++; fails.push({wf:g.wf, status:r.status}); if(r.status===401) clearTok(); g.shas.forEach(function(sha){ qForget(g.cap, sha); }); }
+            statusFn('Queuing\u2026 '+done+'/'+total, null);
+          }).catch(function(){ err++; });
+        }).then(function(){ return new Promise(function(res){ setTimeout(res, 650); }); });
+      });
+      // 3) Per-revision capabilities, oldest first, gently throttled.
+      perRevActive.forEach(function(x){
         chain=chain.then(function(){
           var def=RT[x.cap]; if(!def){ return; }
-          var plats=cellPlatforms(x);
+          var plats=x._plats;
           var jobs=plats.map(function(k){
             var p=def.platforms[k]; var inputs=bfInputs(p, x.sha, x.parent);
             if(x.cap==='snapshots2' && (x.mode==='rerun' || x.done)) inputs.force='true';
@@ -1052,6 +1267,7 @@
       if(!cells.length){ bfStatus('Nothing left to run \u2014 every revision is queued or already has results.', 'ok'); return; }
       if(!getTok()){ bfTokPanel(true); bfStatus('Add a token (Actions: Read and write) to queue runs.', 'warn'); var i=document.getElementById('lvci-bf-tok-input'); if(i) i.focus(); return; }
       bfTokPanel(false);
+      if(!confirmLargeQueue(dispatchTotal(cells))){ bfStatus('Cancelled \u2014 nothing was queued.', 'warn'); return; }
       var runBtn=document.getElementById('lvci-bf-run'); var disBtn=document.getElementById('lvci-bf-dismiss');
       if(runBtn) runBtn.disabled=true; if(disBtn) disBtn.disabled=true;
       dispatchCells(cells, bfStatus).then(function(res){
@@ -1088,7 +1304,7 @@
     // activities to queue. Reuses dispatchCells (oldest-first, snapshots as one
     // backfill) + the same token and optimistic-queued bridge as every other
     // dispatch on the dashboard.
-    var HIST = [{"sha": "ecf184aa6689fc6f2da7e1782dac52d5a45f8876", "short": "ecf184a", "msg": "add test", "snapshots2": {"windows": {"have": 0, "total": 2}, "linux": {"have": 0, "total": 2}}}];                        // [{sha, short, msg}] newest-first (project revisions)
+    var HIST = [{"sha": "ecf184aa6689fc6f2da7e1782dac52d5a45f8876", "short": "ecf184a", "msg": "add test", "dep_only": false, "snapshots2": {"windows": {"have": 0, "total": 2}, "linux": {"have": 0, "total": 2}}}];                        // [{sha, short, msg}] newest-first (project revisions)
     var RAN = {"unit-tests": 1};                     // {cap:1} caps with a result/active run somewhere in history
     var CAP_META = {                            // label + sub for each known capability
       'snapshots':   ['VI Snapshots', 'Renders every changed VI (classic HTML snapshots)'],
@@ -1097,11 +1313,13 @@
       'masscompile': ['Mass Compile', 'Compiles the whole project, each revision'],
       'vi-analyzer': ['VI Analyzer',  'Runs the VI Analyzer suite, each revision'],
       'unit-tests':  ['Unit Tests',   'Runs the unit-test suite, each revision'],
-      'antidoc':     ['Antidoc',      'Generates project documentation, each revision']
+      'antidoc':     ['Antidoc',      'Generates project documentation, each revision'],
+      'builds':      ['Builds',       'Runs the project build specifications (EXE, PPL, ...), each revision'],
+      'sbom-generation': ['SBOM Generation', 'Generates a CycloneDX dependency report, each revision']
     };
-    var CAP_ORDER = ['snapshots','snapshots2','vidiff','masscompile','vi-analyzer','unit-tests','antidoc'];
+    var CAP_ORDER = ['snapshots','snapshots2','vidiff','masscompile','vi-analyzer','unit-tests','antidoc','builds','sbom-generation'];
     var DIFF_CAPS = { snapshots:1, snapshots2:1, vidiff:1 };  // the lean "diff-based" subset
-    var PLATFORM_CAPS = { snapshots2:1, vidiff:1, masscompile:1, 'vi-analyzer':1 };
+    var PLATFORM_CAPS = { snapshots2:1, vidiff:1, masscompile:1, 'vi-analyzer':1, builds:1 };
     var platState = {};                         // cap id -> selected platform keys for history rows
     function capPlatforms(capId){ return (RT[capId] && RT[capId].platforms) ? Object.keys(RT[capId].platforms) : []; }
     function histHasPlatformPicker(capId){ return !!PLATFORM_CAPS[capId] && capPlatforms(capId).length > 1; }
@@ -1134,7 +1352,7 @@
       return CAP_ORDER.filter(function(c){ return (seen[c] || RAN[c]) && RT[c]; });
     }
     function histModal(){ return document.getElementById('cidash-hist-modal'); }
-    function cidashHistClose(){ var m=histModal(); if(m) m.style.display='none'; document.body.style.overflow=''; }
+    function cidashHistClose(){ var m=histModal(); if(m) m.style.display='none'; document.body.style.overflow=''; try{ if(window.parent!==window) window.parent.postMessage('lvci:hist-close',location.origin); }catch(e){} }
     function histStatus(html, kind){
       var s=document.getElementById('cidash-hist-status'); if(!s) return;
       var col = kind==='ok' ? '#3fb950' : (kind==='err' ? '#f85149' : (kind==='warn' ? '#d29922' : 'var(--fg-muted)'));
@@ -1142,12 +1360,73 @@
     }
     function histTokPanel(show){ var p=document.getElementById('cidash-hist-tok'); if(p) p.style.display = show ? 'block' : 'none'; }
     var actMode = {};                           // cap -> 'off' | 'fill' | 'rerun' (per-activity choice)
+    var reuseWarm = false;                       // opt-in: keep ONE container warm across the queued revisions
+    // ── Warm-container reuse + time estimate ───────────────────────────────
+    // A (cap, platform) is "batch-capable" when its run target carries a 'batch'
+    // backfill workflow (Windows only for now). The reuse toggle is only offered
+    // when at least one installed activity is batch-capable, and only batch-capable
+    // platforms actually collapse into a single warm-container run.
+    function capBatchPlatforms(capId){
+      var def=RT[capId]; if(!def || !def.platforms) return [];
+      return Object.keys(def.platforms).filter(function(k){ return !!(def.platforms[k] && def.platforms[k].batch); });
+    }
+    function anyBatchAvailable(){ return histInstalledCaps().some(function(c){ return capBatchPlatforms(c).length>0; }); }
+    // Default per-platform fallbacks (seconds) used only until a repo has run
+    // history to measure from. Windows containers are the slow case this feature
+    // targets; Linux start in seconds.
+    var TIMING_DEFAULT = { windows:{ startup:600, work:120 }, linux:{ startup:45, work:90 }, all:{ startup:120, work:90 } };
+    function timingFor(cap, plat){
+      // Returns {startup, work} seconds for one (cap, platform), derived from the
+      // server-injected medians (work = in-container compile time; total = whole
+      // run wall-clock; startup = total - work). Falls back to platform defaults.
+      var d=TIMING_DEFAULT[plat] || TIMING_DEFAULT.windows;
+      var t=(RT_TIMING && RT_TIMING[cap] && RT_TIMING[cap][plat]) ? RT_TIMING[cap][plat] : null;
+      var work = (t && t.work>0) ? t.work : d.work;
+      var startup;
+      if(t && t.total>0){ startup = Math.max(20, t.total - work); }
+      else { startup = d.startup; }
+      return { startup:startup, work:work, measured: !!(t && t.total>0) };
+    }
+    function fmtDur(sec){
+      sec=Math.max(0, Math.round(sec));
+      var h=Math.floor(sec/3600), m=Math.floor((sec%3600)/60);
+      if(h>0) return h+'h'+(m>0?(' '+m+'m'):'');
+      if(m>0) return m+'m';
+      return sec+'s';
+    }
+    function histEstimate(){
+      // Fresh vs warm-batch total compute time for the cells about to be queued.
+      // Fresh: every (cell, platform) pays startup+work. Warm: batch-capable
+      // (cap, platform) groups pay startup ONCE + work per revision; everything
+      // else is unchanged. Returns null when nothing measurable is selected.
+      var cells=histCells(); if(!cells.length) return null;
+      var fresh=0, warm=0, anyMeasured=false, anyBatch=false;
+      var groups={};   // cap|plat -> count (batch-capable, warm only)
+      cells.forEach(function(x){
+        if(x.cap==='snapshots') return;   // snapshots are already one backfill run
+        cellPlatforms(x).forEach(function(plat){
+          var tm=timingFor(x.cap, plat); if(tm.measured) anyMeasured=true;
+          fresh += tm.startup + tm.work;
+          var p=(RT[x.cap]&&RT[x.cap].platforms)?RT[x.cap].platforms[plat]:null;
+          if(reuseWarm && p && p.batch){
+            anyBatch=true; var key=x.cap+'|'+plat;
+            if(!groups[key]){ groups[key]={tm:tm, n:0}; }
+            groups[key].n++;
+          } else {
+            warm += tm.startup + tm.work;
+          }
+        });
+      });
+      Object.keys(groups).forEach(function(key){ var g=groups[key]; warm += g.tm.startup + g.n*g.tm.work; });
+      return { fresh:fresh, warm:warm, anyMeasured:anyMeasured, anyBatch:anyBatch };
+    }
     function histAllCells(){
       // EVERY per-revision activity cell on the table, tagged empty (a never-run run
       // glyph) vs done (a cell that already carries a result). bfCells() sees only the
       // empty glyphs; gathering the result cells too is what lets this dialog RE-RUN
-      // an activity, not just fill the blanks. Active (queued/running) cells carry no
-      // data attributes and so are skipped - you can't re-queue what's already running.
+      // an activity, not just fill the blanks. A queued/running cell (cidash-active-cell)
+      // is gathered too as "done" so an in-flight activity stays re-runnable (the new run
+      // replaces it via concurrency) instead of showing "none in scope".
       var out=[]; var rows=document.querySelectorAll('tbody tr[data-project]');
       Array.prototype.forEach.call(rows, function(tr, idx){
         Array.prototype.forEach.call(tr.querySelectorAll('a.cidash-run'), function(a){
@@ -1158,6 +1437,24 @@
           var done = td.getAttribute('data-done') === 'false' ? false : true;
           out.push({ cap:td.getAttribute('data-cap'), sha:td.getAttribute('data-sha'),
                      parent:td.getAttribute('data-parent')||'', order:idx, done:done });
+        });
+        Array.prototype.forEach.call(tr.querySelectorAll('td.cidash-active-cell'), function(td){
+          out.push({ cap:td.getAttribute('data-cap'), sha:td.getAttribute('data-sha'),
+                     parent:td.getAttribute('data-parent')||'', order:idx, done:true });
+        });
+        // A client-side optimistic overlay (Queued / Running / Failed) can REPLACE an
+        // empty run glyph, leaving the cell with ONLY data-qcap/data-qsha (the run's
+        // <a> - and thus the cap/sha this dialog keys off - is gone). Gather those too
+        // so a cell whose only state is an in-browser overlay (e.g. a unit-test run that
+        // FAILED) stays re-runnable here instead of vanishing as "none in scope". A
+        // cap-cell/active-cell that ALSO carries an overlay is already counted above, so
+        // skip it to avoid double-counting; parent is recovered from the stored entry.
+        Array.prototype.forEach.call(tr.querySelectorAll('td.cidash-queued-cell[data-qcap]'), function(td){
+          if(td.classList.contains('cidash-cap-cell') || td.classList.contains('cidash-active-cell')) return;
+          var qc=td.getAttribute('data-qcap'), qs=td.getAttribute('data-qsha');
+          if(!qc || !qs) return;
+          var qe=(qLoad()[qc+'|'+qs])||{};
+          out.push({ cap:qc, sha:qs, parent:qe.parent||'', order:idx, done:true });
         });
       });
       if(RT.snapshots2){
@@ -1172,10 +1469,24 @@
       return out;
     }
     function histScopeMode(){ var r=document.querySelector('input[name="cidash-hist-scope"]:checked'); return r ? r.value : 'all'; }
-    function histIdx(sha){ for(var i=0;i<HIST.length;i++){ if(HIST[i].sha===sha) return i; } return -1; }
+    // The revision pickers mirror the dashboard table: dependency-only revisions
+    // (only a .vipc/.vip changed) are hidden unless "Show dependency-only" is on,
+    // and a free-text search narrows by short SHA or commit title. histVisible() is
+    // the newest-first set every scope (all / range / specific) actually operates on.
+    var histSearch = '';
+    var histInclDep = false;
+    function histMatchSearch(r){
+      if(!histSearch) return true;
+      var q=histSearch.toLowerCase();
+      return (String(r.short||'').toLowerCase().indexOf(q)>=0)
+          || (String(r.sha||'').toLowerCase().indexOf(q)>=0)
+          || (String(r.msg||'').toLowerCase().indexOf(q)>=0);
+    }
+    function histVisible(){ return HIST.filter(function(r){ return (histInclDep || !r.dep_only) && histMatchSearch(r); }); }
+    function histIdxIn(list, sha){ for(var i=0;i<list.length;i++){ if(list[i].sha===sha) return i; } return -1; }
     function histIncludedShas(){
-      // Three scopes drive which revisions are queued (HIST is newest-first):
-      //   all      -> every revision
+      // Three scopes drive which revisions are queued (visible set is newest-first):
+      //   all      -> every visible revision
       //   range    -> Start (older bound) .. Stop (newer bound), inclusive; a blank
       //               Start = oldest and a blank Stop = newest, and a reversed pair
       //               is swapped so the range is always valid
@@ -1185,17 +1496,45 @@
         Array.prototype.forEach.call(document.querySelectorAll('input.cidash-hist-spec:checked'), function(b){ inc[b.value]=1; });
         return inc;
       }
+      var vis=histVisible();
       if(mode==='range'){
         var f=document.getElementById('cidash-hist-from'); var t=document.getElementById('cidash-hist-to');
-        var iFrom = (f && f.value) ? histIdx(f.value) : HIST.length-1;   // '' = oldest
-        var iTo   = (t && t.value) ? histIdx(t.value) : 0;               // '' = newest
-        if(iFrom<0) iFrom=HIST.length-1; if(iTo<0) iTo=0;
+        var iFrom = (f && f.value) ? histIdxIn(vis, f.value) : vis.length-1;   // '' = oldest
+        var iTo   = (t && t.value) ? histIdxIn(vis, t.value) : 0;              // '' = newest
+        if(iFrom<0) iFrom=vis.length-1; if(iTo<0) iTo=0;
         var lo=Math.min(iFrom,iTo), hi=Math.max(iFrom,iTo);
-        for(var j=lo;j<=hi;j++){ if(HIST[j]) inc[HIST[j].sha]=1; }
+        for(var j=lo;j<=hi;j++){ if(vis[j]) inc[vis[j].sha]=1; }
         return inc;
       }
-      HIST.forEach(function(r){ inc[r.sha]=1; });
+      vis.forEach(function(r){ inc[r.sha]=1; });
       return inc;
+    }
+    function histRenderRevList(){
+      // (Re)build the "All" count, the range dropdowns and the specific checklist
+      // from histVisible(), preserving current selections where the revision is
+      // still visible. Called on open and whenever the search / dep toggle changes.
+      var vis=histVisible();
+      var ac=document.getElementById('cidash-hist-allcount');
+      if(ac) ac.textContent='All '+vis.length+' revision'+(vis.length===1?'':'s');
+      var optsHtml=vis.map(function(r){ return '<option value="'+esc(r.sha)+'">'+esc((r.short||'')+(r.msg?(' \u2014 '+r.msg):''))+'</option>'; }).join('');
+      ['cidash-hist-from','cidash-hist-to'].forEach(function(id){
+        var sel=document.getElementById(id); if(!sel) return;
+        var prev=sel.value;
+        var head=(id==='cidash-hist-from')?'<option value="">Oldest (beginning)</option>':'<option value="">Newest (latest)</option>';
+        sel.innerHTML=head+optsHtml;
+        sel.value=(prev && vis.some(function(r){return r.sha===prev;}))?prev:'';
+      });
+      var checked={};
+      Array.prototype.forEach.call(document.querySelectorAll('input.cidash-hist-spec:checked'), function(b){ checked[b.value]=1; });
+      var host=document.getElementById('cidash-hist-speclist'); if(!host) return;
+      if(!vis.length){ host.innerHTML='<div class="cidash-hist-specempty">No revisions match.</div>'; return; }
+      host.innerHTML=vis.map(function(r){
+        return '<label class="cidash-hist-specitem"><input type="checkbox" class="cidash-hist-spec" value="'+esc(r.sha)+'"'+(checked[r.sha]?' checked':'')+'>'
+          + '<span class="sh">'+esc(r.short||'')+'</span><span class="ms">'+esc(r.msg||'')+'</span>'
+          + (r.dep_only?'<span class="cidash-hist-deptag" title="Only an external dependency (.vipc/.vip) changed in this revision">dep</span>':'')
+          + '</label>';
+      }).join('');
+      Array.prototype.forEach.call(document.querySelectorAll('input.cidash-hist-spec'), function(b){ b.addEventListener('change', histRefresh); });
     }
     function histScopeApply(){
       // Reveal only the sub-control for the chosen scope.
@@ -1279,10 +1618,19 @@
         var row=document.getElementById('cidash-hist-actrow-'+cap); if(row) row.classList.toggle('skip', mode==='off');
       });
       var cells=histCells();
-      var shas={}; var snaps=0; var perRev=0; var anyRe=false;
-      cells.forEach(function(x){ shas[x.sha]=1; if(x.cap==='snapshots') snaps=1; else perRev++; if(x.done) anyRe=true; });
-      var runs=perRev + snaps;   // snapshots collapse into one backfill run
+      var shas={}; var snaps=0; var perRevRuns=0; var anyRe=false; var groupKeys={};
+      cells.forEach(function(x){
+        shas[x.sha]=1; if(x.done) anyRe=true;
+        if(x.cap==='snapshots'){ snaps=1; return; }
+        cellPlatforms(x).forEach(function(plat){
+          var p=(RT[x.cap]&&RT[x.cap].platforms)?RT[x.cap].platforms[plat]:null;
+          if(reuseWarm && p && p.batch){ groupKeys[x.cap+'|'+plat]=1; }   // one warm-container run per (cap,platform)
+          else { perRevRuns++; }
+        });
+      });
+      var runs=perRevRuns + Object.keys(groupKeys).length + snaps;
       var nrev=Object.keys(shas).length;
+      var est=histEstimate();
       var sum=document.getElementById('cidash-hist-summary');
       if(sum){
         if(!HIST.length){ sum.innerHTML='No project revisions to populate yet \u2014 commit some VIs first.'; }
@@ -1293,9 +1641,23 @@
           else if(anyOn){ sum.innerHTML='Nothing to queue for the selected revisions and activities.'; }
           else { sum.innerHTML='Pick at least one activity below \u2014 every one is set to <b>Skip</b>.'; }
         } else {
+          // Live, history-driven time estimate. When the warm-container option is on
+          // and at least one activity is batch-capable, show Fresh vs Warm compute
+          // and the saving; otherwise show the single estimate and nudge the option.
+          var estHtml='';
+          if(est){
+            if(reuseWarm && est.anyBatch){
+              estHtml = ' <span style="color:var(--fg-muted)">Est. compute: warm <b>'+fmtDur(est.warm)+'</b> vs fresh '+fmtDur(est.fresh)+' \u2014 saves \u2248 <b>'+fmtDur(Math.max(0,est.fresh-est.warm))+'</b> (runs serially in one container).</span>';
+            } else {
+              estHtml = ' <span style="color:var(--fg-muted)">Est. compute \u2248 '+fmtDur(est.fresh)
+                + (anyBatchAvailable()?' \u2014 tick \u201ckeep one container warm\u201d below to cut the repeated startup':'')+'.</span>';
+            }
+            if(!est.anyMeasured) estHtml += ' <span style="color:var(--fg-muted)">(approximate \u2014 no run history yet)</span>';
+          }
           sum.innerHTML='Will queue <b>'+runs+'</b> run'+(runs>1?'s':'')+' across <b>'+nrev+'</b> revision'+(nrev>1?'s':'')+', oldest first.'
             + (anyRe?' <span style="color:var(--fg-muted)">Re-runs replace the existing result.</span>':'')
-            + (runs>=20?' <span style="color:var(--fg-muted)">They queue and run in order, paced by your concurrency limit.</span>':'');
+            + (runs>=20 && !reuseWarm?' <span style="color:var(--fg-muted)">They queue and run in order, paced by your concurrency limit.</span>':'')
+            + estHtml;
         }
       }
       var go=document.getElementById('cidash-hist-go'); if(go) go.disabled = !runs;
@@ -1320,20 +1682,23 @@
       var body=document.getElementById('cidash-hist-body'); if(!body) return;
       var h='';
       h += '<p class="cidash-hist-intro">Queue CI for revisions that already exist so the dashboard fills in. Runs <strong>oldest \u2192 newest</strong>. For each activity, choose to <b>Fill</b> only the missing results or <b>Re-run</b> every selected revision.</p>';
-      var optsHtml = HIST.map(function(r){ return '<option value="'+esc(r.sha)+'">'+esc((r.short||'')+(r.msg?(' \u2014 '+r.msg):''))+'</option>'; }).join('');
-      h += '<div class="cidash-hist-sec"><label class="cidash-hist-lbl">Which revisions</label><div class="cidash-hist-scope">';
-      h += '<label class="cidash-hist-radio"><input type="radio" name="cidash-hist-scope" value="all" checked> All '+HIST.length+' revision'+(HIST.length===1?'':'s')+' <span class="sub">\u2014 the full history</span></label>';
+      var anyDep = HIST.some(function(r){ return r.dep_only; });
+      h += '<div class="cidash-hist-sec"><label class="cidash-hist-lbl">Which revisions</label>';
+      h += '<div class="cidash-hist-revfilter"><input type="text" id="cidash-hist-revsearch" class="cidash-hist-search" placeholder="Search by title or SHA\u2026" autocomplete="off" spellcheck="false" value="'+esc(histSearch)+'">';
+      if(anyDep) h += '<label class="cidash-hist-inclchk" title="Revisions whose only change is an external dependency (.vipc/.vip). Hidden by default, matching the dashboard."><input type="checkbox" id="cidash-hist-incldep"'+(histInclDep?' checked':'')+'> Show dependency-only revisions</label>';
+      h += '</div>';
+      h += '<div class="cidash-hist-scope">';
+      h += '<label class="cidash-hist-radio"><input type="radio" name="cidash-hist-scope" value="all" checked> <span id="cidash-hist-allcount">All revisions</span> <span class="sub">\u2014 the full history</span></label>';
       h += '<label class="cidash-hist-radio"><input type="radio" name="cidash-hist-scope" value="range"> A range of history</label>';
       h += '<div class="cidash-hist-rangerow" id="cidash-hist-rangerow" style="display:none">';
-      h += '<label>Start at <select id="cidash-hist-from"><option value="">Oldest (beginning)</option>'+optsHtml+'</select></label>';
-      h += '<label>stop at <select id="cidash-hist-to"><option value="">Newest (latest)</option>'+optsHtml+'</select></label>';
+      h += '<label>Start at <select id="cidash-hist-from"></select></label>';
+      h += '<label>stop at <select id="cidash-hist-to"></select></label>';
       h += '</div>';
       h += '<label class="cidash-hist-radio"><input type="radio" name="cidash-hist-scope" value="specific"> Specific revision(s)</label>';
       h += '<div id="cidash-hist-specwrap" style="display:none">';
       h += '<div class="cidash-hist-spectools"><a href="#" id="cidash-hist-spec-all">Select all</a><a href="#" id="cidash-hist-spec-none">Clear</a></div>';
-      h += '<div class="cidash-hist-speclist" id="cidash-hist-speclist">';
-      HIST.forEach(function(r){ h += '<label class="cidash-hist-specitem"><input type="checkbox" class="cidash-hist-spec" value="'+esc(r.sha)+'"><span class="sh">'+esc(r.short||'')+'</span><span class="ms">'+esc(r.msg||'')+'</span></label>'; });
-      h += '</div></div>';
+      h += '<div class="cidash-hist-speclist" id="cidash-hist-speclist"></div>';
+      h += '</div>';
       h += '</div></div>';
       var instCaps=histInstalledCaps();
       h += '<div class="cidash-hist-sec"><div class="cidash-hist-actshead"><label class="cidash-hist-lbl" style="margin:0">Activities</label>';
@@ -1361,6 +1726,19 @@
           + '</span></div>';
       });
       h += '</div></div>';
+      // Opt-in warm-container reuse — only shown when at least one installed
+      // activity is batch-capable (has a backfill workflow). OFF by default, with
+      // a prominent warning that state carries over between revisions.
+      if(anyBatchAvailable()){
+        h += '<div class="cidash-hist-sec"><label style="display:flex;gap:10px;align-items:flex-start;border:1px solid #da3633;background:rgba(218,54,51,.06);border-radius:8px;padding:10px 12px;cursor:pointer">'
+          + '<input type="checkbox" id="cidash-hist-reuse" style="margin-top:3px">'
+          + '<span style="font-size:.82em;line-height:1.5">'
+          + '<b style="color:#da3633">\u26A0 Keep one container warm across revisions</b> <span style="color:var(--fg-muted)">(off by default)</span><br>'
+          + '<span style="color:var(--fg-muted)">Pays the slow Windows container startup <b>once</b> for the whole batch instead of per revision \u2014 a big saving on long histories. '
+          + 'The trade-off: container state (temp files, the LabVIEW object cache, the registry) <b>carries over</b> between revisions, so a revision whose code modifies the system can influence a later revision\u2019s result. '
+          + 'The container image itself is never changed. Only Windows activities that support batching are affected \u2014 leave this off unless you understand the risk.</span>'
+          + '</span></label></div>';
+      }
       h += '<div id="cidash-hist-tok" style="display:none;border:1px solid var(--border);border-radius:8px;padding:12px;background:var(--surface);margin:0 0 12px">';
       h += '<div style="font-size:.82em;color:var(--fg);font-weight:600;margin-bottom:6px">One-time setup \u2014 a token to queue runs</div>';
       h += '<ol style="font-size:.8em;color:var(--fg-muted);margin:0 0 8px;padding-left:18px;line-height:1.6">';
@@ -1376,7 +1754,16 @@
       h += '<button class="cidash-btn cidash-go" id="cidash-hist-go">\u25B6 Queue runs</button>';
       h += '<button class="cidash-btn cidash-ghost" id="cidash-hist-cancel">Cancel</button></div>';
       body.innerHTML=h;
+      // Mirror the dashboard's current dependency-only filter so the dialog shows
+      // the same revisions the table does; populate the pickers from the visible set.
+      var _dd=document.getElementById('show-deponly'); histInclDep=!!(_dd && _dd.checked);
+      var _idp=document.getElementById('cidash-hist-incldep'); if(_idp) _idp.checked=histInclDep;
+      histRenderRevList();
+      var _rs=document.getElementById('cidash-hist-revsearch'); if(_rs) _rs.addEventListener('input', function(){ histSearch=_rs.value.trim(); histRenderRevList(); histRefresh(); });
+      if(_idp) _idp.addEventListener('change', function(){ histInclDep=!!_idp.checked; histRenderRevList(); histRefresh(); });
       instCaps.forEach(function(cap){ actMode[cap]='fill'; });   // open with every activity on Fill (gaps only)
+      reuseWarm=false;   // warm-container reuse always starts OFF
+      var rchk=document.getElementById('cidash-hist-reuse'); if(rchk) rchk.addEventListener('change', function(){ reuseWarm=!!rchk.checked; histRefresh(); });
       Array.prototype.forEach.call(document.querySelectorAll('.cidash-hist-chip'), function(b){ b.addEventListener('click', function(){ histPreset(b.getAttribute('data-preset')); }); });
       Array.prototype.forEach.call(document.querySelectorAll('.cidash-seg button'), function(b){ b.addEventListener('click', function(){ if(b.disabled) return; histSetMode(b.getAttribute('data-cap'), b.getAttribute('data-mode')); }); });
       Array.prototype.forEach.call(document.querySelectorAll('.cidash-hist-plat'), function(b){ b.addEventListener('change', function(){
@@ -1384,12 +1771,11 @@
         var selected=(platState[cap] || keys.slice()).filter(function(k){ return k!==platform; });
         if(b.checked) selected.push(platform);
         platState[cap]=selected.filter(function(k,i,a){ return keys.indexOf(k)>=0 && a.indexOf(k)===i; });
-        histRender();
+        histRefresh();
       }); });
       Array.prototype.forEach.call(document.querySelectorAll('input[name="cidash-hist-scope"]'), function(r){ r.addEventListener('change', function(){ histScopeApply(); histRefresh(); }); });
       var hf=document.getElementById('cidash-hist-from'); if(hf) hf.addEventListener('change', histRefresh);
       var ht=document.getElementById('cidash-hist-to'); if(ht) ht.addEventListener('change', histRefresh);
-      Array.prototype.forEach.call(document.querySelectorAll('input.cidash-hist-spec'), function(b){ b.addEventListener('change', histRefresh); });
       var spa=document.getElementById('cidash-hist-spec-all'); if(spa) spa.addEventListener('click', function(e){ e.preventDefault(); Array.prototype.forEach.call(document.querySelectorAll('input.cidash-hist-spec'), function(b){ b.checked=true; }); histRefresh(); });
       var spn=document.getElementById('cidash-hist-spec-none'); if(spn) spn.addEventListener('click', function(e){ e.preventDefault(); Array.prototype.forEach.call(document.querySelectorAll('input.cidash-hist-spec'), function(b){ b.checked=false; }); histRefresh(); });
       var go=document.getElementById('cidash-hist-go'); if(go) go.addEventListener('click', histRun);
@@ -1411,7 +1797,7 @@
       // platform-split - limit to the document's platform. Falls back silently to
       // the normal full dialog when the revision/activity isn't on this dashboard.
       try{
-        if(opts.sha && histIdx(opts.sha)>=0){
+        if(opts.sha && histIdxIn(HIST, opts.sha)>=0){
           var sp=document.querySelector('input[name="cidash-hist-scope"][value="specific"]'); if(sp){ sp.checked=true; histScopeApply(); }
           Array.prototype.forEach.call(document.querySelectorAll('input.cidash-hist-spec'), function(b){ b.checked=(b.value===opts.sha); });
         }
@@ -1430,9 +1816,10 @@
       if(!cells.length){ histStatus('Nothing to queue \u2014 the selected revisions already have results for those activities.', 'warn'); return; }
       if(!getTok()){ histTokPanel(true); histStatus('Add a token (Actions: Read and write) to queue runs.', 'warn'); var i=document.getElementById('cidash-hist-tok-input'); if(i) i.focus(); return; }
       histTokPanel(false);
+      if(!confirmLargeQueue(dispatchTotal(cells, {reuse: reuseWarm}))){ histStatus('Cancelled \u2014 nothing was queued.', 'warn'); return; }
       var go=document.getElementById('cidash-hist-go'); var cancel=document.getElementById('cidash-hist-cancel');
       if(go) go.disabled=true; if(cancel) cancel.disabled=true;
-      dispatchCells(cells, histStatus).then(function(res){
+      dispatchCells(cells, histStatus, {reuse: reuseWarm}).then(function(res){
         if(cancel) cancel.disabled=false;
         if(res.ok && !res.err){
           histStatus('\u2713 Queued '+res.ok+' run'+(res.ok>1?'s':'')+', oldest first \u2014 watch them fill in on the dashboard\u2026', 'ok');
@@ -1456,6 +1843,23 @@
     }
     // Exposed for the shared header's "Populate history" menu item.
     window.lvciRunHistory = histOpen;
+    // When the dialog is opened inside an overlay iframe from a report page's
+    // "Re-run" (host requests ?lvci-embed=1), show ONLY the dialog: hide the
+    // dashboard header/table and make the page transparent, so the iframe reads
+    // as a plain modal over the dimmed host page, not the whole dashboard behind it.
+    function lvciEmbedMode(){
+      try{
+        var d=document.documentElement; if(d.classList.contains('lvci-embed')) return; d.classList.add('lvci-embed');
+        var st=document.createElement('style');
+        st.textContent='html.lvci-embed,html.lvci-embed body{background:transparent!important}'
+          +'html.lvci-embed body>*:not(#cidash-hist-modal){display:none!important}'
+          +'html.lvci-embed #cidash-hist-modal{background:rgba(0,0,0,.55)!important}';
+        (document.head||document.documentElement).appendChild(st);
+      }catch(e){}
+    }
+    // Apply embed hiding synchronously - this script runs while the page is still
+    // parsing (before <main>/the table below), so the chrome is never painted.
+    try{ if(new URLSearchParams(location.search||'').get('lvci-embed')==='1') lvciEmbedMode(); }catch(e){}
     // Exposed because the modal's "× Close" button and backdrop use inline onclick
     // handlers, which resolve against window — not this IIFE's scope. Without this
     // the close button silently did nothing (the Cancel button and Esc, which call
@@ -1474,9 +1878,11 @@
       try{
         var p=new URLSearchParams(location.search||'');
         if(p.get('lvci-populate')!=='1') return;
+        var embed=(p.get('lvci-embed')==='1');
         var opts={ cap:(p.get('cap')||''), sha:(p.get('sha')||''), platform:(p.get('platform')||'') };
-        try{ ['lvci-populate','cap','sha','platform'].forEach(function(k){ p.delete(k); });
+        try{ ['lvci-populate','lvci-embed','cap','sha','platform'].forEach(function(k){ p.delete(k); });
              var qs=p.toString(); history.replaceState(null,'',location.pathname+(qs?('?'+qs):'')+location.hash); }catch(e){}
+        if(embed) lvciEmbedMode();
         histOpen((opts.cap||opts.sha)?opts:undefined);
       }catch(e){}
     }
@@ -1493,9 +1899,200 @@
     window.addEventListener('focus', qRecheck);
   })();
   </script>
+
+  <div id="cidash-debug-modal" onclick="if(event.target===this)cidashDebugClose()" style="display:none;position:fixed;inset:0;z-index:320;background:rgba(0,0,0,.55)">
+    <div role="dialog" aria-modal="true" aria-labelledby="cidash-debug-title" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(600px,calc(100% - 32px));max-height:calc(100% - 48px);overflow:auto;background:var(--bg);border:1px solid var(--border);border-radius:10px;box-shadow:0 10px 48px rgba(0,0,0,.5)">
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid var(--border);background:var(--surface)">
+        <strong id="cidash-debug-title" style="font-size:.95em">Debug Run</strong>
+        <button onclick="cidashDebugClose()" style="background:transparent;border:1px solid var(--border);color:var(--fg);padding:5px 12px;border-radius:6px;cursor:pointer;font-size:.82em">&#10005; Close</button>
+      </div>
+      <div id="cidash-debug-body" style="padding:16px"></div>
+    </div>
+  </div>
+  <script>
+  (function(){
+    var RT = {"unit-tests": {"label": "Unit Tests", "platforms": {"windows": {"wf": "unit-tests-windows-container.yml", "inputs": {"commit_sha": "{sha}"}}, "linux": {"wf": "unit-tests-linux-container.yml", "inputs": {"commit_sha": "{sha}"}}}}};
+    var HIST = [{"sha": "ecf184aa6689fc6f2da7e1782dac52d5a45f8876", "short": "ecf184a", "msg": "add test", "dep_only": false, "snapshots2": {"windows": {"have": 0, "total": 2}, "linux": {"have": 0, "total": 2}}}];
+    var REPO = "antsundq/lunit-integration-test";
+    var BRANCH = "main";
+    var TOK_KEY = "lvci_dispatch_token";
+    var WF = "debug-session.yml";
+    var CAP_LABEL = { masscompile:'Mass Compile', vidiff:'VIDiff', snapshots2:'VI Browser 2.0 Snapshots', builds:'Builds' };
+    function $(id){ return document.getElementById(id); }
+    function esc(s){ return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+    function getTok(){ try{ return localStorage.getItem(TOK_KEY)||localStorage.getItem("lvci_install_token")||''; }catch(e){ return ''; } }
+    function setTok(v){ try{ localStorage.setItem(TOK_KEY, v); }catch(e){} }
+    function ghHeaders(){ return { 'Authorization':'Bearer '+getTok(), 'Accept':'application/vnd.github+json', 'X-GitHub-Api-Version':'2022-11-28' }; }
+    function pagesBase(){ var u=(window.LVCI&&window.LVCI.pagesUrl)||''; if(u&&u.charAt(u.length-1)!=='/') u+='/'; return u; }
+    function tokenSetupUrl(){
+      var owner=(REPO.split('/')[0])||'';
+      return 'https://github.com/settings/personal-access-tokens/new?name='+encodeURIComponent('LabVIEW CI dispatch')
+        +'&description='+encodeURIComponent('Queue LabVIEW CI runs for '+REPO)
+        +(owner?'&target_name='+encodeURIComponent(owner):'')+'&actions=write';
+    }
+    // Existing debug sessions (any in-progress debug-session run), shown below the
+    // start form: reconnect (Open) or End from ANY device, with a live progress
+    // indicator for ones still queued or booting.
+    var liveTimer = null, liveIds = '';
+    function clearLiveTimer(){ if(liveTimer){ clearInterval(liveTimer); liveTimer=null; } }
+    function ensureLiveCss(){
+      if(document.getElementById('dbg-live-css')) return;
+      var st=document.createElement('style'); st.id='dbg-live-css';
+      st.textContent='.dbg-bar{height:6px;background:var(--border);border-radius:4px;overflow:hidden;margin:6px 0}'
+        +'.dbg-bar>span{display:block;height:100%;width:0;background:#1f6feb;border-radius:4px;transition:width .4s}'
+        +'.dbg-bar.dbg-ok>span{background:#2ea043}'
+        +'.dbg-bar.dbg-indet>span{width:35%;animation:dbgSlide 1.15s ease-in-out infinite}'
+        +'@keyframes dbgSlide{0%{margin-left:-35%}100%{margin-left:100%}}';
+      (document.head||document.documentElement).appendChild(st);
+    }
+    function endRun(runId){
+      if(!runId) return;
+      if(!window.confirm('End debug session run #'+runId+'? This cancels the run and tears down the container.')) return;
+      fetch('https://api.github.com/repos/'+REPO+'/actions/runs/'+runId+'/cancel', { method:'POST', headers:ghHeaders() })
+        .then(function(){ setTimeout(refreshLiveSessions, 1500); }).catch(function(){});
+    }
+    function livePlat(r){ var m=/\((windows|linux)\)/i.exec(r.display_title||r.name||''); return m?m[1].toLowerCase():''; }
+    function liveRow(r){
+      var sh=(r.head_sha||'').slice(0,7); var plat=livePlat(r);
+      return '<div class="dbg-live-row" style="padding:8px 0;border-bottom:1px solid var(--border)">'
+        + '<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">'
+        +   '<span style="font-size:.85em"><a href="'+esc(r.html_url)+'" target="_blank" rel="noopener">run #'+r.id+' &#8599;</a> &middot; <code>'+esc(sh)+'</code>'+(plat?(' &middot; '+esc(plat)):'')+'</span>'
+        +   '<span id="dbg-live-open-'+r.id+'" style="margin-left:auto"></span>'
+        +   '<button class="dbg-live-end" data-run="'+r.id+'" style="background:transparent;border:1px solid #f85149;color:#f85149;padding:3px 10px;border-radius:6px;cursor:pointer;font-size:.8em">End</button>'
+        + '</div>'
+        + '<div class="dbg-bar dbg-indet" id="dbg-live-bar-'+r.id+'"><span></span></div>'
+        + '<div id="dbg-live-stat-'+r.id+'" style="font-size:.78em;color:var(--fg-muted)">Checking status&hellip;</div>'
+        + '</div>';
+    }
+    function setLiveBar(id, mode, pct){
+      var el=$('dbg-live-bar-'+id); if(!el) return;
+      el.className='dbg-bar'+(mode==='indet'?' dbg-indet':(mode==='ok'?' dbg-ok':''));
+      var sp=el.firstChild; if(!sp) return;
+      if(mode==='indet'){ sp.style.width=''; } else { sp.style.width=(pct==null?0:Math.max(4,Math.min(100,pct)))+'%'; }
+    }
+    function setLiveStat(id, html){ var el=$('dbg-live-stat-'+id); if(el) el.innerHTML=html; }
+    function setLiveOpen(id, url){ var el=$('dbg-live-open-'+id); if(el) el.innerHTML='<a href="'+esc(url)+'" target="_blank" rel="noopener" style="display:inline-block;background:#2ea043;border:1px solid #2ea043;color:#fff;padding:4px 12px;border-radius:6px;text-decoration:none;font-size:.82em">Open remote desktop &#8599;</a>'; }
+    function fillLiveRow(r){
+      // Live? the connect file is published once the tunnel is up.
+      fetch(pagesBase()+'debug/'+r.id+'.json?_='+Date.now(), { cache:'no-cache' })
+        .then(function(x){ return x.ok?x.json():null; })
+        .then(function(j){
+          if(j&&j.url){ setLiveOpen(r.id, j.url); setLiveBar(r.id,'ok',100); setLiveStat(r.id,'<span style="color:#3fb950">Live &mdash; remote desktop ready.</span>'); return; }
+          if(r.status==='queued'||r.status==='pending'){ setLiveBar(r.id,'indet'); setLiveStat(r.id,'Queued &mdash; waiting for a runner or another debug session to finish.'); return; }
+          fetch('https://api.github.com/repos/'+REPO+'/actions/runs/'+r.id+'/jobs?per_page=5', { headers:ghHeaders(), cache:'no-cache' })
+            .then(function(x){ return x.ok?x.json():null; })
+            .then(function(d){
+              var jobs=((d&&d.jobs)||[]);
+              var total=0, done=0, cur='';
+              jobs.forEach(function(j){ (j.steps||[]).forEach(function(s){ total++; if(s.status==='completed') done++; else if(s.status==='in_progress'&&!cur) cur=s.name; }); });
+              if(total){ setLiveBar(r.id,'', Math.round(done/total*100)); setLiveStat(r.id,'Booting &mdash; '+esc(cur||'working')+' ('+done+'/'+total+')'); }
+              else { setLiveBar(r.id,'indet'); setLiveStat(r.id,'Booting the container + LabVIEW&hellip;'); }
+            }).catch(function(){ setLiveBar(r.id,'indet'); setLiveStat(r.id,'Booting&hellip;'); });
+        }).catch(function(){ setLiveBar(r.id,'indet'); setLiveStat(r.id,'Checking status&hellip;'); });
+    }
+    function refreshLiveSessions(){
+      var box=$('dbg-live'); if(!box) return;
+      if(!getTok()){ box.innerHTML=''; liveIds=''; return; }
+      fetch('https://api.github.com/repos/'+REPO+'/actions/workflows/'+encodeURIComponent(WF)+'/runs?per_page=20', { headers:ghHeaders(), cache:'no-cache' })
+        .then(function(r){ return r.ok?r.json():null; })
+        .then(function(d){
+          var box=$('dbg-live'); if(!box) return;
+          var runs=((d&&d.workflow_runs)||[]).filter(function(r){ return r.status!=='completed'; });
+          var hdr='<div style="font-weight:600;font-size:.88em;margin:0 0 4px">Existing debug sessions</div>';
+          if(!runs.length){ box.innerHTML=hdr+'<div style="font-size:.8em;color:var(--fg-muted)">None running. Started sessions run on the runner (independent of this browser) and appear here.</div>'; liveIds=''; return; }
+          var ids=runs.map(function(r){ return r.id; }).join(',');
+          if(ids!==liveIds){
+            ensureLiveCss();
+            box.innerHTML=hdr
+              + '<div style="font-size:.78em;color:var(--fg-muted);margin:0 0 6px">Reconnect (Open) or end any session from here &mdash; on any device.</div>'
+              + runs.map(liveRow).join('');
+            liveIds=ids;
+            var ends=box.querySelectorAll('.dbg-live-end');
+            for(var i=0;i<ends.length;i++){ ends[i].addEventListener('click', function(){ endRun(this.getAttribute('data-run')); }); }
+          }
+          runs.forEach(fillLiveRow);
+        }).catch(function(){});
+    }
+    // Quickly surface a just-dispatched run in the list (before the 5s poll settles).
+    function kickLive(){ refreshLiveSessions(); setTimeout(refreshLiveSessions,1500); setTimeout(refreshLiveSessions,4000); setTimeout(refreshLiveSessions,8000); }
+    function modal(){ return $('cidash-debug-modal'); }
+    function cidashDebugClose(){ clearLiveTimer(); var m=modal(); if(m) m.style.display='none'; document.body.style.overflow=''; }
+    window.cidashDebugClose = cidashDebugClose;
+    function debugStatus(html, kind){
+      var s=$('dbg-status'); if(!s) return;
+      var col = kind==='ok' ? '#3fb950' : (kind==='err' ? '#f85149' : (kind==='warn' ? '#d29922' : 'var(--fg-muted)'));
+      s.style.color=col; s.innerHTML=html||'';
+    }
+    // ── Config form + existing-sessions list ───────────────────────────
+    function renderStep1(){
+      var revs=HIST.slice(0,200).map(function(r){ return '<option value="'+esc(r.sha)+'">'+esc(r.short||r.sha.slice(0,7))+' &mdash; '+esc((r.msg||'').slice(0,60))+'</option>'; }).join('');
+      var body=''
+        + '<p style="margin:0 0 10px;color:var(--fg-muted);font-size:.9em">Start an interactive LabVIEW desktop on a worker container for a specific revision, then remote in. The project opens automatically and an on-screen menu lets you run CI operations (Mass Compile, Builds, VIDiff&hellip;) and watch them execute live.</p>'
+        + '<div style="margin:0 0 12px;padding:8px 10px;border:1px solid var(--border);border-left:3px solid #d29922;border-radius:6px;background:rgba(210,153,34,.08);font-size:.85em;color:var(--fg)">Each debug session occupies one of this project\'s Actions runners for its whole lifetime and will block other CI jobs if no runner slots are free. End sessions as soon as you are done.</div>'
+        + '<div style="margin:0 0 12px"><label style="font-weight:600;font-size:.85em" for="dbg-rev">Revision</label><br>'
+        +   '<select id="dbg-rev" style="width:100%;max-width:100%;padding:6px;border:1px solid var(--border);border-radius:6px;background:var(--bg);color:var(--fg)">'+revs+'</select></div>'
+        + '<div style="margin:0 0 14px"><label style="font-weight:600;font-size:.85em" for="dbg-min">Auto-end after</label><br>'
+        +   '<select id="dbg-min" style="padding:6px;border:1px solid var(--border);border-radius:6px;background:var(--bg);color:var(--fg)">'
+        +     '<option value="30">30 minutes</option><option value="45" selected>45 minutes</option><option value="60">60 minutes</option><option value="90">90 minutes</option><option value="120">120 minutes</option></select></div>'
+        + (getTok()?'':'<div style="margin:0 0 12px"><label style="font-weight:600;font-size:.85em" for="dbg-tok">Dispatch token</label><br><input id="dbg-tok" type="password" placeholder="fine-grained PAT with Actions: write" style="width:100%;padding:6px;border:1px solid var(--border);border-radius:6px;background:var(--bg);color:var(--fg)"><div style="font-size:.8em;color:var(--fg-muted);margin-top:3px"><a href="'+tokenSetupUrl()+'" target="_blank" rel="noopener">Create one &#8599;</a></div></div>')
+        + '<div style="display:flex;gap:8px;align-items:center;margin-top:6px;flex-wrap:wrap"><button id="dbg-start" title="Boot a LabVIEW debug desktop on this revision; pick operations from the on-screen menu once inside" style="background:#1f6feb;border:1px solid #1f6feb;color:#fff;padding:7px 16px;border-radius:6px;cursor:pointer;font-size:.9em">Start debug session</button><span id="dbg-status" style="font-size:.85em;color:var(--fg-muted)"></span></div>'
+        + '<div id="dbg-live" style="margin:16px 0 0;border-top:1px solid var(--border);padding-top:12px;max-height:280px;overflow-y:auto"></div>';
+      $('cidash-debug-body').innerHTML=body;
+      try{ if(typeof window.lvciRevPicker==='function') window.lvciRevPicker($('dbg-rev')); }catch(e){}
+      $('dbg-start').addEventListener('click', function(){ startSession(); });
+      refreshLiveSessions();
+      clearLiveTimer(); liveTimer=setInterval(refreshLiveSessions, 5000);
+    }
+    // Dispatch a debug session: boot a LabVIEW desktop on the chosen revision
+    // with the project open; operations are chosen from the on-screen menu.
+    function startSession(){
+      var t=$('dbg-tok'); if(t && t.value.trim()){ setTok(t.value.trim()); }
+      if(!getTok()){ debugStatus('Enter a token with <strong>Actions: write</strong> to start.', 'err'); return; }
+      var sha=$('dbg-rev') ? $('dbg-rev').value : '';
+      if(!sha){ debugStatus('Pick a revision.', 'err'); return; }
+      var mins=$('dbg-min') ? $('dbg-min').value : '45';
+      var startBtn=$('dbg-start');
+      if(startBtn){ startBtn.disabled=true; startBtn.textContent='Starting...'; }
+      debugStatus('Dispatching the debug session...');
+      function reset(){ if(startBtn){ startBtn.disabled=false; startBtn.textContent='Start debug session'; } }
+      var inputs={ commit_sha:sha, platform:'linux', actions:'', minutes:String(mins), open_source:'true' };
+      fetch('https://api.github.com/repos/'+REPO+'/actions/workflows/'+encodeURIComponent(WF)+'/dispatches', {
+        method:'POST', headers:Object.assign({'Content-Type':'application/json'}, ghHeaders()),
+        body:JSON.stringify({ ref:BRANCH, inputs:inputs })
+      }).then(function(r){
+        reset();
+        if(r.status===204){ debugStatus('Session dispatched &mdash; it will appear below as it boots.', 'ok'); kickLive(); return; }
+        if(r.status===401){ try{ localStorage.removeItem(TOK_KEY); }catch(e){} debugStatus('Token rejected (401). Paste a valid token above.', 'err'); renderStep1(); return; }
+        if(r.status===403){ debugStatus('Dispatch forbidden (403). The token needs <strong>Actions: write</strong> for <code>'+esc(REPO)+'</code>.', 'err'); return; }
+        if(r.status===404){ debugStatus('Not found (404). <code>'+esc(WF)+'</code> is not installed, or the token cannot see this repo.', 'err'); return; }
+        debugStatus('Dispatch failed (HTTP '+r.status+').', 'err');
+      }).catch(function(e){ reset(); debugStatus('Network error: '+esc(String(e&&e.message||e)), 'err'); });
+    }
+    // ── Open ───────────────────────────────────────────────────────────────
+    function debugOpen(){
+      var m=modal(); if(!m) return;
+      m.style.display='block'; document.body.style.overflow='hidden';
+      renderStep1();
+    }
+    window.lvciDebugRun = debugOpen;
+    document.addEventListener('keydown', function(e){ if(e.key==='Escape'){ var m=modal(); if(m && m.style.display==='block') cidashDebugClose(); } });
+    // Auto-open when another page routed here for Debug Run (?lvci-debug=1); strip
+    // the param so a manual reload doesn't reopen it.
+    function lvciAutoDebug(){
+      try{
+        var p=new URLSearchParams(location.search||'');
+        if(p.get('lvci-debug')!=='1') return;
+        p.delete('lvci-debug');
+        try{ var qs=p.toString(); history.replaceState(null,'',location.pathname+(qs?('?'+qs):'')+location.hash); }catch(e){}
+        debugOpen();
+      }catch(e){}
+    }
+    if(document.readyState==='loading'){ document.addEventListener('DOMContentLoaded', lvciAutoDebug); } else { lvciAutoDebug(); }
+  })();
+  </script>
   <main class="lvci-main">
   <h1>CI Dashboard — lunit-integration-test</h1>
-  <div class="sub">Last updated: 2026-07-25 08:57 UTC &nbsp;|&nbsp; Auto-refreshes every 15 min</div>
+  <div class="sub">Last updated: 2026-10-01 05:52 UTC &nbsp;|&nbsp; Auto-refreshes every 15 min</div>
   <div class="nav">
     <a href="https://github.com/antsundq/lunit-integration-test">GitHub</a>
     <a href="https://github.com/antsundq/lunit-integration-test/actions">Actions</a>
@@ -1536,9 +2133,111 @@
         <th style="text-align:center">Snapshots</th>
         <th style="text-align:center">Unit Tests</th>
         <th style="text-align:center">Antidoc</th>
+        <th style="text-align:center">Builds</th>
+        <th style="text-align:center">SBOM</th>
       </tr>
     </thead>
     <tbody>
+    <tr data-project="false" data-deponly="false">
+      <td class="cidash-rev">
+        <div class="cidash-rev-wrap">
+          <span class="cidash-avatar" style="background:hsl(81,42%,45%)" title="Anton Sundqvist" aria-hidden="true">A</span>
+          <div class="cidash-rev-body">
+            <div class="cidash-rev-line1"><a href="https://antsundq.github.io/lunit-integration-test/vi-snapshots/index.html?sha=5b509e5ac5992728e2932df30c323e15ac16f0d7" class="cidash-rev-msg" title="Dashboard: check the tooling out from the configured source repo">Dashboard: check the tooling out from the configured source repo</a></div>
+            <div class="cidash-rev-meta"><a href="https://antsundq.github.io/lunit-integration-test/vi-snapshots/index.html?sha=5b509e5ac5992728e2932df30c323e15ac16f0d7" class="cidash-rev-sha" title="Browse this revision's VIs in the VI Browser">5b509e5</a><span class="cidash-rev-dot">&middot;</span>Anton Sundqvist<span class="cidash-rev-dot">&middot;</span>2026-10-01</div>
+          </div>
+        </div>
+      </td>
+      <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
+      <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
+      <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
+      <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
+      <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
+      <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
+      <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
+      <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
+    </tr>
+
+    <tr data-project="false" data-deponly="false">
+      <td class="cidash-rev">
+        <div class="cidash-rev-wrap">
+          <span class="cidash-avatar" style="background:hsl(81,42%,45%)" title="Anton Sundqvist" aria-hidden="true">A</span>
+          <div class="cidash-rev-body">
+            <div class="cidash-rev-line1"><a href="https://antsundq.github.io/lunit-integration-test/vi-snapshots/index.html?sha=7bba1623bcc6441d6bba30759c25ee6849139bcc" class="cidash-rev-msg" title="Update labview-ci.yml">Update labview-ci.yml</a></div>
+            <div class="cidash-rev-meta"><a href="https://antsundq.github.io/lunit-integration-test/vi-snapshots/index.html?sha=7bba1623bcc6441d6bba30759c25ee6849139bcc" class="cidash-rev-sha" title="Browse this revision's VIs in the VI Browser">7bba162</a><span class="cidash-rev-dot">&middot;</span>Anton Sundqvist<span class="cidash-rev-dot">&middot;</span>2026-10-01</div>
+          </div>
+        </div>
+      </td>
+      <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
+      <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
+      <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
+      <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
+      <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
+      <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
+      <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
+      <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
+    </tr>
+
+    <tr data-project="false" data-deponly="false">
+      <td class="cidash-rev">
+        <div class="cidash-rev-wrap">
+          <span class="cidash-avatar" style="background:hsl(81,42%,45%)" title="Anton Sundqvist" aria-hidden="true">A</span>
+          <div class="cidash-rev-body">
+            <div class="cidash-rev-line1"><a href="https://antsundq.github.io/lunit-integration-test/vi-snapshots/index.html?sha=769628dfc39c61ac84f49f5a5a925560d9ca8676" class="cidash-rev-msg" title="Update run-unit-tests.sh (no pipe around LabVIEWCLI)">Update run-unit-tests.sh (no pipe around LabVIEWCLI)</a></div>
+            <div class="cidash-rev-meta"><a href="https://antsundq.github.io/lunit-integration-test/vi-snapshots/index.html?sha=769628dfc39c61ac84f49f5a5a925560d9ca8676" class="cidash-rev-sha" title="Browse this revision's VIs in the VI Browser">769628d</a><span class="cidash-rev-dot">&middot;</span>Anton Sundqvist<span class="cidash-rev-dot">&middot;</span>2026-09-30</div>
+          </div>
+        </div>
+      </td>
+      <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
+      <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
+      <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
+      <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
+      <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
+      <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
+      <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
+      <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
+    </tr>
+
+    <tr data-project="false" data-deponly="false">
+      <td class="cidash-rev">
+        <div class="cidash-rev-wrap">
+          <span class="cidash-avatar" style="background:hsl(81,42%,45%)" title="Anton Sundqvist" aria-hidden="true">A</span>
+          <div class="cidash-rev-body">
+            <div class="cidash-rev-line1"><a href="https://antsundq.github.io/lunit-integration-test/vi-snapshots/index.html?sha=d313219793f1e70dabe2daab7d0946c0445c236d" class="cidash-rev-msg" title="Install LabVIEW CI with Linux unit tests">Install LabVIEW CI with Linux unit tests</a></div>
+            <div class="cidash-rev-meta"><a href="https://antsundq.github.io/lunit-integration-test/vi-snapshots/index.html?sha=d313219793f1e70dabe2daab7d0946c0445c236d" class="cidash-rev-sha" title="Browse this revision's VIs in the VI Browser">d313219</a><span class="cidash-rev-dot">&middot;</span>Anton Sundqvist<span class="cidash-rev-dot">&middot;</span>2026-09-30</div>
+          </div>
+        </div>
+      </td>
+      <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
+      <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
+      <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
+      <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
+      <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
+      <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
+      <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
+      <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
+    </tr>
+
+    <tr data-project="false" data-deponly="false">
+      <td class="cidash-rev">
+        <div class="cidash-rev-wrap">
+          <span class="cidash-avatar" style="background:hsl(81,42%,45%)" title="Anton Sundqvist" aria-hidden="true">A</span>
+          <div class="cidash-rev-body">
+            <div class="cidash-rev-line1"><a href="https://antsundq.github.io/lunit-integration-test/vi-snapshots/index.html?sha=7197e399abf0e6cc13fc513756dd22bb67695b66" class="cidash-rev-msg" title="del workflows">del workflows</a></div>
+            <div class="cidash-rev-meta"><a href="https://antsundq.github.io/lunit-integration-test/vi-snapshots/index.html?sha=7197e399abf0e6cc13fc513756dd22bb67695b66" class="cidash-rev-sha" title="Browse this revision's VIs in the VI Browser">7197e39</a><span class="cidash-rev-dot">&middot;</span>Anton Sundqvist<span class="cidash-rev-dot">&middot;</span>2026-07-25</div>
+          </div>
+        </div>
+      </td>
+      <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
+      <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
+      <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
+      <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
+      <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
+      <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
+      <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
+      <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
+    </tr>
+
     <tr data-project="false" data-deponly="false">
       <td class="cidash-rev">
         <div class="cidash-rev-wrap">
@@ -1549,6 +2248,8 @@
           </div>
         </div>
       </td>
+      <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
+      <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
       <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
       <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
       <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
@@ -1573,6 +2274,8 @@
       <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
       <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
       <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
+      <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
+      <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
     </tr>
 
     <tr data-project="true" data-deponly="false">
@@ -1590,6 +2293,8 @@
       <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
       <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
       <td style="text-align:center" class="cidash-cap-cell" data-cap="unit-tests" data-sha="ecf184aa6689fc6f2da7e1782dac52d5a45f8876" data-parent="7affc69fd3cc634ac7d2a9c81600e8294858f6b5" data-short="ecf184a" data-ts="2026-06-24T16:23:32Z"><span class="cidash-chip cc-fail"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M3.72 3.72a.75.75 0 0 1 1.06 0L8 6.94l3.22-3.22a.75.75 0 1 1 1.06 1.06L9.06 8l3.22 3.22a.75.75 0 1 1-1.06 1.06L8 9.06l-3.22 3.22a.75.75 0 0 1-1.06-1.06L6.94 8 3.72 4.78a.75.75 0 0 1 0-1.06Z"/></svg><a href="https://github.com/antsundq/lunit-integration-test/actions/runs/28113281727" style="color:inherit">tests</a></span></td>
+      <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
+      <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
       <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
     </tr>
 
@@ -1609,6 +2314,8 @@
       <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
       <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
       <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
+      <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
+      <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
     </tr>
 
     <tr data-project="false" data-deponly="false">
@@ -1621,6 +2328,8 @@
           </div>
         </div>
       </td>
+      <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
+      <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
       <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
       <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
       <td style="text-align:center;color:var(--fg-muted);font-size:.75em">—</td>
